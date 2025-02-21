@@ -761,14 +761,14 @@ post:
   # 评论插件
   # Comment plugin
   comments:
-    enable: false
+    enable: true
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
     type: utterances
     display_pages:
     # 新增页面类型
-      post: false
+      post: true   # 文章页面
       about: true   # 关于页面
       
 
@@ -1008,6 +1008,7 @@ about:
     - { class: "iconfont icon-QQyouxiang", tip: "QQ邮箱" }
     #- { class: "iconfont icon-a-xiaohongshu1", link: "" }
     - { class: "iconfont icon-gmail", link: https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox, tip: "谷歌邮箱" }
+ 
 
 
 #---------------------------
