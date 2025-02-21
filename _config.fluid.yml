@@ -18,7 +18,7 @@
 
 # 用于浏览器标签的图标
 # Icon for browser tab
-favicon: /img/fluid.png
+favicon: https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20241229122942480.jpg
 
 # 用于苹果设备的图标
 # Icon for Apple touch
