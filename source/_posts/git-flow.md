@@ -1,3 +1,15 @@
+---
+title: git 使用指北与问题解决
+date: 2025-02-20 15:00:00
+categories: git
+tags: git
+excerpt:
+  - git的基本操作和配置
+  - 分支管理和版本控制实践
+  - SSH秘钥的创建和端口配置
+comments: true
+mermaid: true
+---
 {% note info %}
 
 想用一杯Latte把你灌醉
@@ -79,7 +91,7 @@ Tab: 自动补全
 ```bash
 echo "xxx" # 是将xxx输出到控制台，如果有空格的话要加引号
 echo xxx > <file>  # 将xxx写入写入文件中，如果没有就创建一个
-echo xxx >> <file>
+echo xxx >> <file> # 将xxx追加写入文件中
 
 
 git add xxx  # U > A
