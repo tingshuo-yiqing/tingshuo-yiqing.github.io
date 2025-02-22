@@ -19,12 +19,12 @@
   <meta name="author" content="ting">
   <meta name="keywords" content="">
   
-    <meta name="description" content="想用一杯Latte把你灌醉好让你能多爱我一点            1.访问github并汉化 在微软商店安装Watt Toolkit可以直接加速github，然后用qq邮箱或其它邮箱都可以注册一下  搜索框搜索“chinese汉化”认准第一个star7.8k即可，然后安装油猴(Tampermonkey)插件，再安装汉化脚本。还有许多脚本可以安装。  进入文件夹右键打开选">
+    <meta name="description" content="git的基本操作和配置,分支管理和版本控制实践,SSH秘钥的创建和端口配置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="听说">
-<meta property="og:url" content="http://tingshuoyiqing.top/2025/02/22/git-flow/index.html">
+<meta property="og:title" content="git 使用指北与问题解决">
+<meta property="og:url" content="http://tingshuoyiqing.top/2025/02/20/git-flow/index.html">
 <meta property="og:site_name" content="听说">
-<meta property="og:description" content="想用一杯Latte把你灌醉好让你能多爱我一点            1.访问github并汉化 在微软商店安装Watt Toolkit可以直接加速github，然后用qq邮箱或其它邮箱都可以注册一下  搜索框搜索“chinese汉化”认准第一个star7.8k即可，然后安装油猴(Tampermonkey)插件，再安装汉化脚本。还有许多脚本可以安装。  进入文件夹右键打开选">
+<meta property="og:description" content="git的基本操作和配置,分支管理和版本控制实践,SSH秘钥的创建和端口配置">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250219224935829.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250219225253894.png">
@@ -43,9 +43,10 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250222092557434.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250222102912825.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250222104045050.png">
-<meta property="article:published_time" content="2025-02-22T09:38:17.619Z">
-<meta property="article:modified_time" content="2025-02-22T09:07:52.780Z">
+<meta property="article:published_time" content="2025-02-20T07:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-22T09:51:13.364Z">
 <meta property="article:author" content="ting">
+<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250219224935829.png">
   
@@ -53,7 +54,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>听说</title>
+  <title>git 使用指北与问题解决 - 听说</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -289,7 +290,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle"></span>
+            <span id="subtitle">git 使用指北与问题解决</span>
           
         </div>
 
@@ -300,8 +301,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-22 17:38" pubdate>
-          2025年2月22日 下午
+        <time datetime="2025-02-20 15:00" pubdate>
+          2025年2月20日 下午
         </time>
       </span>
     
@@ -369,7 +370,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">git 使用指北与问题解决</h1>
             
             
               <div class="markdown-body">
@@ -553,6 +554,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/git/" class="category-chain-item">git</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/git/" class="print-no-link">#git</a>
+      
+    </div>
   
 </div>
 
@@ -562,8 +591,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://tingshuoyiqing.top/2025/02/22/git-flow/</div>
+      <div>git 使用指北与问题解决</div>
+      <div>http://tingshuoyiqing.top/2025/02/20/git-flow/</div>
     </div>
     <div class="license-meta">
       
@@ -575,7 +604,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年2月22日</div>
+          <div>2025年2月20日</div>
         </div>
       
       
