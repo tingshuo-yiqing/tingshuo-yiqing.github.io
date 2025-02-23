@@ -19,24 +19,28 @@
   <meta name="author" content="ting">
   <meta name="keywords" content="">
   
-    <meta name="description" content="基于github issue的utterences评论系统，包含about页">
+    <meta name="description" content="恢复已修改的文件、git commit -am、分支合并、git rm、git pull、git pull --rebase、bash的系统命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为Fluid添加评论系统">
-<meta property="og:url" content="http://tingshuoyiqing.top/2025/02/23/comment-sys/index.html">
+<meta property="og:title" content="git命令具体剖析">
+<meta property="og:url" content="http://tingshuoyiqing.top/2025/02/23/git_commend/index.html">
 <meta property="og:site_name" content="听说">
-<meta property="og:description" content="基于github issue的utterences评论系统，包含about页">
+<meta property="og:description" content="恢复已修改的文件、git commit -am、分支合并、git rm、git pull、git pull --rebase、bash的系统命令">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-02-23T02:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-23T07:09:11.819Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250223151311810.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250223140435751.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250223140917518.png">
+<meta property="article:published_time" content="2025-02-23T05:58:14.000Z">
+<meta property="article:modified_time" content="2025-02-23T07:17:40.864Z">
 <meta property="article:author" content="ting">
-<meta property="article:tag" content="comment">
+<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250223151311810.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>为Fluid添加评论系统 - 听说</title>
+  <title>git命令具体剖析 - 听说</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -47,8 +51,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -274,7 +276,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">为Fluid添加评论系统</span>
+            <span id="subtitle">git命令具体剖析</span>
           
         </div>
 
@@ -285,8 +287,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-23 10:00" pubdate>
-          2025年2月23日 上午
+        <time datetime="2025-02-23 13:58" pubdate>
+          2025年2月23日 下午
         </time>
       </span>
     
@@ -297,7 +299,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          31 字
+          819 字
         
       </span>
     
@@ -308,7 +310,7 @@
         
         
         
-          1 分钟
+          7 分钟
         
       </span>
     
@@ -354,15 +356,43 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">为Fluid添加评论系统</h1>
+            <h1 id="seo-header">git命令具体剖析</h1>
             
             
               <div class="markdown-body">
                 
-                <p>test:</p>
-<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msup><mi>i</mi><mn>2</mn></msup><mo>=</mo><mfrac><mrow><mi>n</mi><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mn>2</mn><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mn>6</mn></mfrac></mrow><annotation encoding="application/x-tex">\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.9291em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">6</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord">2</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-
+                <div class="note note-info">
+            <p>有人疼</p><p>才显得多么出众</p>
+          </div>
+<p>2025-2-22</p>
+<p>可以通过 <code>git commit -am</code> 命令提交所有文件的修改（当你觉得所有工作都做完以后）。但是如果有新文件，需要先 <code>git add</code>新文件名，再 <code>git commit </code>提交修改。因为 <code>git commit -am</code> 命令适用于已经跟踪的文件。</p>
+<h2 id="恢复已修改文件的方法">恢复已修改文件的方法</h2>
+<p>情况一：如果没有add即是<strong>红色的M</strong>的话： <code>git restore &lt;file&gt;</code> 可以将修改的文件恢复到最近一次提交的状态</p>
+<p>情况二：如果已经add了即是<strong>绿色的M</strong>的话:可以 <code>git restore --staged &lt;file&gt;</code> 取消暂存。再利用<code>git restore &lt;file&gt;</code> 恢复文件</p>
+<h2 id="关于-git-pull">关于 <code>git pull</code></h2>
+<p>素材来源于<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1McyYYtEX4/?spm_id_from=333.337.search-card.all.click&amp;vd_source=7184f70b126b0d6d3ad6ad4235c0c45c">技术爬爬虾</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git pull = git fetch + git merge<br></code></pre></td></tr></table></figure>
+<p>git pull 是 git fetch 和 git merge 的缩写。git fetch 用于从远程仓库获取最新的代码，而 git merge 则用于将获取到的代码合并到本地分支。但是如果多人共同开发一个分支时，可能会出现冲突。</p>
+<p>比如同事A修改了文件A，同事B也修改了文件A，但是同事A先一步提交了，同事B后一步提交，那同事B就会被拒绝提交，因为git merge 会将本地分支和远程分支进行合并，如果有冲突，就会拒绝合并。</p>
+<p>所以如果多人共同开发一个分支时，最好使用 <code>git pull --rebase</code>命令，这样有冲突的话，会把你本地的提交放一边，先把远程分支的提交拉下来，然后再把你的提交放回去，这样不仅解决了冲突还保持了分支的线性。</p>
+<p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" srcset="/img/loading.gif" lazyload data-original="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250223151311810.png" alt=""></p>
+<h2 id="关于分支合并">关于分支合并</h2>
+<h4 id="关于合并（merge）">关于合并（merge）</h4>
+<p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" srcset="/img/loading.gif" lazyload data-original="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250223140435751.png" alt="merge"></p>
+<h4 id="关于变基（rebase）">关于变基（rebase）</h4>
+<p>素材来源于<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1HM411377j?spm_id_from=333.788.videopod.sections&amp;vd_source=7184f70b126b0d6d3ad6ad4235c0c45c&amp;p=18">GeekHour</a></p>
+<p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" srcset="/img/loading.gif" lazyload data-original="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250223140917518.png" alt="rebase"></p>
+<h2 id="关于git-rm">关于<code>git rm</code></h2>
+<h4 id="情况一：如果已经暂存了，就不能直接git-rmbash会报错，会导致暂存区的更改丢失。">情况一：如果已经暂存了，就不能直接<code>git rm</code>bash会报错，会导致暂存区的更改丢失。</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">rm</span> --cached &lt;file&gt; <span class="hljs-comment"># 移除跟踪变为Untracked，但还保留在本地上</span><br><br>git <span class="hljs-built_in">rm</span> -f &lt;file&gt; <span class="hljs-comment"># 强制删除, 不保留在本地</span><br></code></pre></td></tr></table></figure>
+<p>当你误提交了一个有用的文件时，可以使用<code>git rm --cached &lt;file&gt;</code>来删除，但是会保留在本地<br>
+当你决定弃用一个文件的话，可以使用<code>git rm -f &lt;file&gt;</code>来强制删除</p>
+<h5 id="情况二：如果没有暂存，就可以直接git-rm，会同时删除工作区和暂存区的文件">情况二：如果没有暂存，就可以直接<code>git rm</code>，会同时删除工作区和暂存区的文件</h5>
+<h2 id="文件的常见操作">文件的常见操作</h2>
+<blockquote>
+<p>关于这些系统命令是否需要加<code>git</code>前缀，需要根据这个文件（目录）是否被纳入管理即有没有被add</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">touch</span> &lt;file&gt; <span class="hljs-comment"># 创建文件</span><br>git <span class="hljs-built_in">mv</span> &lt;file&gt; &lt;newfile&gt; <span class="hljs-comment"># 重命名文件</span><br><br><span class="hljs-built_in">echo</span> &lt;content&gt; &gt; &lt;file&gt; <span class="hljs-comment"># 写入文件</span><br><span class="hljs-built_in">echo</span> &lt;content&gt; &gt;&gt; &lt;file&gt; <span class="hljs-comment"># 追加文件内容</span><br><span class="hljs-built_in">cat</span> &lt;file&gt; <span class="hljs-comment"># 查看文件内容</span><br><br><span class="hljs-built_in">cp</span> file1 file2 <span class="hljs-comment"># 复制文件</span><br><span class="hljs-built_in">mv</span> file1 file2 <span class="hljs-comment"># 移动文件</span><br><br><span class="hljs-built_in">mkdir</span> &lt;<span class="hljs-built_in">dir</span>&gt; <span class="hljs-comment"># 创建文件夹</span><br><span class="hljs-built_in">mkdir</span> -p &lt;dir1&gt;/&lt;dir2&gt; <span class="hljs-comment"># 创建递归文件夹</span><br><br><span class="hljs-built_in">ls</span>                  <span class="hljs-comment"># 列出当前目录文件</span><br><span class="hljs-built_in">ls</span> -l               <span class="hljs-comment"># 详细信息</span><br><span class="hljs-built_in">ls</span> -a               <span class="hljs-comment"># 显示隐藏文件</span><br><span class="hljs-built_in">ls</span> -lh              <span class="hljs-comment"># 以可读格式显示大小</span><br><span class="hljs-built_in">ls</span> -lt              <span class="hljs-comment"># 按修改时间排序</span><br><br><span class="hljs-built_in">cd</span> <span class="hljs-built_in">dirname</span>          <span class="hljs-comment"># 进入目录</span><br><span class="hljs-built_in">cd</span> ..               <span class="hljs-comment"># 返回上一级目录</span><br><span class="hljs-built_in">cd</span> /home/user       <span class="hljs-comment"># 进入指定目录</span><br><span class="hljs-built_in">cd</span> ~                <span class="hljs-comment"># 进入 home 目录</span><br><span class="hljs-built_in">cd</span> -                <span class="hljs-comment"># 返回上次所在目录</span><br><br>git <span class="hljs-built_in">rm</span> -r &lt;<span class="hljs-built_in">dir</span>&gt; <span class="hljs-comment"># 删除文件夹</span><br>git <span class="hljs-built_in">rm</span> -rf &lt;<span class="hljs-built_in">dir</span>&gt; <span class="hljs-comment"># 强制删除文件夹</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -370,11 +400,32 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/git/" class="category-chain-item">git</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/comment/" class="print-no-link">#comment</a>
+        <a href="/tags/git/" class="print-no-link">#git</a>
       
     </div>
   
@@ -386,8 +437,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>为Fluid添加评论系统</div>
-      <div>http://tingshuoyiqing.top/2025/02/23/comment-sys/</div>
+      <div>git命令具体剖析</div>
+      <div>http://tingshuoyiqing.top/2025/02/23/git_commend/</div>
     </div>
     <div class="license-meta">
       
@@ -431,18 +482,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/02/23/git_commend/" title="git命令具体剖析">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">git命令具体剖析</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/02/20/git-flow/" title="git 使用指北与问题解决">
-                        <span class="hidden-mobile">git 使用指北与问题解决</span>
+                      <a href="/2025/02/23/comment-sys/" title="为Fluid添加评论系统">
+                        <span class="hidden-mobile">为Fluid添加评论系统</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -534,11 +579,6 @@
 
 
   
-
-
-  
-  
-
 
 
 

@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250222102912825.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250222104045050.png">
 <meta property="article:published_time" content="2025-02-20T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-22T09:51:13.364Z">
+<meta property="article:modified_time" content="2025-02-22T11:35:50.394Z">
 <meta property="article:author" content="ting">
 <meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary_large_image">
@@ -313,7 +313,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.2k 字
         
       </span>
     
@@ -324,7 +324,7 @@
         
         
         
-          20 分钟
+          19 分钟
         
       </span>
     
@@ -402,7 +402,7 @@
 <h2 id="3-基础操作流程">3.基础操作流程</h2>
 <h4 id="专业名词的理解">专业名词的理解</h4>
 <p><code>git status</code>最常见的命令之一，初学者最好每一个命令就查看一下文件的状态.<code>git status -s</code>/<code>git status --short</code>是精简输出</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;xxx&quot;</span> <span class="hljs-comment"># 是将xxx输出到控制台，如果有空格的话要加引号</span><br><span class="hljs-built_in">echo</span> xxx &gt; &lt;file&gt;  <span class="hljs-comment"># 将xxx写入写入文件中，如果没有就创建一个</span><br><span class="hljs-built_in">echo</span> xxx &gt;&gt; &lt;file&gt;<br><br><br>git add xxx  <span class="hljs-comment"># U &gt; A</span><br>git add .<br><span class="hljs-comment"># A是已添加索引（会提示你git commit），U是未追踪文件（会提示你git add）</span><br><br>git commit -m <span class="hljs-string">&quot;提交信息，要准确详细&quot;</span><br>git commit     <span class="hljs-comment"># 进入vim编辑器，编辑</span><br><br>git <span class="hljs-built_in">log</span> <br>git <span class="hljs-built_in">log</span> -2 <span class="hljs-comment">#只看最近两条</span><br>git <span class="hljs-built_in">log</span> --oneline# 更简洁<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;xxx&quot;</span> <span class="hljs-comment"># 是将xxx输出到控制台，如果有空格的话要加引号</span><br><span class="hljs-built_in">echo</span> xxx &gt; &lt;file&gt;  <span class="hljs-comment"># 将xxx写入写入文件中，如果没有就创建一个</span><br><span class="hljs-built_in">echo</span> xxx &gt;&gt; &lt;file&gt; <span class="hljs-comment"># 将xxx追加写入文件中</span><br><br><br>git add xxx  <span class="hljs-comment"># U &gt; A</span><br>git add .<br><span class="hljs-comment"># A是已添加索引（会提示你git commit），U是未追踪文件（会提示你git add）</span><br><br>git commit -m <span class="hljs-string">&quot;提交信息，要准确详细&quot;</span><br>git commit     <span class="hljs-comment"># 进入vim编辑器，编辑</span><br><br>git <span class="hljs-built_in">log</span> <br>git <span class="hljs-built_in">log</span> -2 <span class="hljs-comment">#只看最近两条</span><br>git <span class="hljs-built_in">log</span> --oneline# 更简洁<br></code></pre></td></tr></table></figure>
 <h4 id="文件的删除（命令行）">文件的删除（命令行）</h4>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">rm</span> &lt;file&gt; <span class="hljs-comment"># 从暂存区和工作区删除</span><br><br>git re -cached &lt;file&gt; <span class="hljs-comment"># 只从暂存区中删除，工作区不变</span><br><br>git <span class="hljs-built_in">rm</span> -f &lt;file&gt; <span class="hljs-comment"># 强制删除文件，即使文件在工作区被修改</span><br><br>git <span class="hljs-built_in">rm</span> -rf &lt;directory&gt; <span class="hljs-comment">#递归删除所有文件和子目录</span><br><br>git commit -m <span class="hljs-string">&quot;删除&lt;file&gt;&quot;</span><br></code></pre></td></tr></table></figure>
 <blockquote>
@@ -494,31 +494,6 @@
 </tbody>
 </table>
 <h4 id="本地分支">本地分支</h4>
-<pre><code class=" mermaid">graph LR
-    A[分支操作] --&gt; B(创建分支)
-    A --&gt; C(分支查看)
-    A --&gt; D(切换分支)
-    A --&gt; E(删除分支)
-    A --&gt; F(重命名分支)
-    A --&gt; G(分支合并)
-
-    B --&gt; B1(同时创建:&lt;br/&gt;仓库+分支)
-    B --&gt; B2(已有仓库，&lt;br/&gt;再创建分支)
-
-    B1 --&gt; B1a[git init -b &lt;分支名称&gt;]
-    B2 --&gt; B2a(仅创建分支)
-    B2 --&gt; B2b(创建并切换到分支)
-
-    B2a --&gt; B2aa[git branch &lt;分支名称&gt;]
-    B2b --&gt; B2ba[git checkout -b &lt;分支名称&gt;]
-
-    C --&gt; CA[git branch]
-    D --&gt; DA[git checkout &lt;分支名称&gt;]
-    E --&gt; EA[git branch -D &lt;分支名称&gt;]
-    F --&gt; FA[git branch -m &lt;原名称&gt; &lt;新名称&gt;]
-    G --&gt; GA(合并到当前分支)
-    GA --&gt; GAA[git merge &lt;被合并分支名称&gt;]
-</code></pre>
 <p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" srcset="/img/loading.gif" lazyload data-original="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250222160617241.png" alt=""></p>
 <p>这里可能会出现一个幻觉：我在分支里创建的文件为什么主分支里也有？，不是说都是独立的吗？原因是<strong>你未将新建的文件提交（commit）到分支中</strong>。此时文件处于“未跟踪”状态（untracked）（即还没有add），切换分支时这些未提交的改动会保留在工作目录中，与分支无关。因为<strong>未执行 <code>git add</code> 和 <code>git commit</code></strong>，所以<code>my.log</code> 未被记录到 Git 版本控制中。切换回 <code>master</code> 分支时，<strong>未提交的改动（包括未跟踪文件）会保留在工作目录</strong>，因此 <code>my.log</code> 仍然存在。</p>
 <p>简单来说：</p>
@@ -734,6 +709,21 @@
 
   
 
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
 
 
 
