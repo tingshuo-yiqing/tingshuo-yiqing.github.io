@@ -270,36 +270,6 @@ git push -u origin master #取决于是main还是master且第一次需要 -u
 | support（支持分支）     |      |
 
 #### 本地分支
-
-```mermaid
-graph LR
-    A[分支操作] --> B(创建分支)
-    A --> C(分支查看)
-    A --> D(切换分支)
-    A --> E(删除分支)
-    A --> F(重命名分支)
-    A --> G(分支合并)
-
-    B --> B1(同时创建:<br/>仓库+分支)
-    B --> B2(已有仓库，<br/>再创建分支)
-
-    B1 --> B1a[git init -b <分支名称>]
-    B2 --> B2a(仅创建分支)
-    B2 --> B2b(创建并切换到分支)
-
-    B2a --> B2aa[git branch <分支名称>]
-    B2b --> B2ba[git checkout -b <分支名称>]
-
-    C --> CA[git branch]
-    D --> DA[git checkout <分支名称>]
-    E --> EA[git branch -D <分支名称>]
-    F --> FA[git branch -m <原名称> <新名称>]
-    G --> GA(合并到当前分支)
-    GA --> GAA[git merge <被合并分支名称>]
-```
-
-
-
 ![](https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250222160617241.png)
 
 这里可能会出现一个幻觉：我在分支里创建的文件为什么主分支里也有？，不是说都是独立的吗？原因是**你未将新建的文件提交（commit）到分支中**。此时文件处于“未跟踪”状态（untracked）（即还没有add），切换分支时这些未提交的改动会保留在工作目录中，与分支无关。因为**未执行 `git add` 和 `git commit`**，所以`my.log` 未被记录到 Git 版本控制中。切换回 `master` 分支时，**未提交的改动（包括未跟踪文件）会保留在工作目录**，因此 `my.log` 仍然存在。

@@ -1005,9 +1005,9 @@ about:
     - { class: "iconfont icon-github-fill", link: "https://github.com/tingshuo-yiqing", tip: "GitHub" }
     - { class: "iconfont icon-bilibili", link: "https://space.bilibili.com/1566780802?spm_id_from=333.1007.0.0", tip: "bilibili" }
     - { class: "iconfont icon-wechat-fill", qrcode: "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250220145903095.jpg" }
-    - { class: "iconfont icon-QQyouxiang", tip: "QQ邮箱" }
+    - { class: "iconfont icon-QQyouxiang", tip: "2917063923@qq.com" }
     #- { class: "iconfont icon-a-xiaohongshu1", link: "" }
-    - { class: "iconfont icon-gmail", link: https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox, tip: "谷歌邮箱" }
+    - { class: "iconfont icon-gmail", link: https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox, tip: "tingshuo2917@gmail.com" }
  
 
 
