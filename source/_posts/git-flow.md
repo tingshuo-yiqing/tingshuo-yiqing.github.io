@@ -8,7 +8,6 @@ excerpt:
   - 分支管理和版本控制实践
   - SSH秘钥的创建和端口配置
 comments: true
-mermaid: true
 ---
 {% note info %}
 

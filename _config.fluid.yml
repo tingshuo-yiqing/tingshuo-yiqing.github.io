@@ -374,15 +374,15 @@ navbar:
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
-    - {
-        key: '文档',
-        icon: 'iconfont icon-books',
-        submenu: [
-          { key: '主题博客', link: 'https://hexo.fluid-dev.com/' },
-          { key: '配置指南', link: 'https://hexo.fluid-dev.com/docs/guide/' },
-          { key: '图标用法', link: 'https://hexo.fluid-dev.com/docs/icon/' }
-        ]
-    }
+    # - {
+    #     key: '文档',
+    #     icon: 'iconfont icon-books',
+    #     submenu: [
+    #       { key: '主题博客', link: 'https://hexo.fluid-dev.com/' },
+    #       { key: '配置指南', link: 'https://hexo.fluid-dev.com/docs/guide/' },
+    #       { key: '图标用法', link: 'https://hexo.fluid-dev.com/docs/icon/' }
+    #     ]
+    # }
     #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 
@@ -403,7 +403,7 @@ search:
   # 搜索的范围
   # Search field
   # Options: post | page | all
-  field: post
+  field: all
 
   # 搜索是否扫描正文
   # If true, search will scan the post content
