@@ -19,15 +19,15 @@
   <meta name="author" content="ting">
   <meta name="keywords" content="">
   
-    <meta name="description" content="如果音乐无法播放，请开魔法                                                                             痴心绝对 - 李圣杰                        0:00     0:00                    你的浏览器不支持音频播放。         &#x2F;* 自定义播放">
+    <meta name="description" content="夜空中最亮的星 - 逃跑计划                      0:00     0:00                浏览器不支持音频播放                     痴心绝对 - 李圣杰       尘埃落定 - 张敬轩       天后">
 <meta property="og:type" content="website">
 <meta property="og:title" content="音悦">
 <meta property="og:url" content="http://tingshuoyiqing.top/%E9%9F%B3%E6%82%A6/index.html">
 <meta property="og:site_name" content="听说">
-<meta property="og:description" content="如果音乐无法播放，请开魔法                                                                             痴心绝对 - 李圣杰                        0:00     0:00                    你的浏览器不支持音频播放。         &#x2F;* 自定义播放">
+<meta property="og:description" content="夜空中最亮的星 - 逃跑计划                      0:00     0:00                浏览器不支持音频播放                     痴心绝对 - 李圣杰       尘埃落定 - 张敬轩       天后">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-01T13:19:07.000Z">
-<meta property="article:modified_time" content="2025-03-01T15:21:26.064Z">
+<meta property="article:modified_time" content="2025-03-02T08:08:40.158Z">
 <meta property="article:author" content="ting">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -253,10 +253,7 @@
                 
 
 <article class="page-content">
-  <div class="note note-warning">
-            <p>如果音乐无法播放，请开魔法</p>
-          </div>
-
+  <!-- 
 <div class="custom-audio-player">
   <div class="audio-info">
     <button class="play-button" id="playButton" aria-label="播放音频">
@@ -269,18 +266,15 @@
     </button>
     <div class="audio-title">痴心绝对 - 李圣杰</div>
   </div>
-
   <div class="progress-container" id="progressContainer">
     <div class="progress-bar" id="progressBar"></div>
   </div>
-
   <div class="time-display">
     <span id="currentTime">0:00</span>
     <span id="duration">0:00</span>
   </div>
-
   <!-- 修正后的音频路径 -->
-  <audio id="audioElement" style="display: none;">
+  <!-- <audio id="audioElement" style="display: none;">
     <source src="https://pub-a3f1bd9f229949c4a1c424d879a5badf.r2.dev/M800003kIRU93Grw5P.mp3" type="audio/mpeg">
     你的浏览器不支持音频播放。
   </audio>
@@ -383,19 +377,186 @@ document.addEventListener('DOMContentLoaded', function() {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   }
 });
+</script> 
+
+{% raw %}
+<!-- 播放器 -->
+<div class="custom-audio-player">
+  <div class="audio-info">
+    <button class="play-button" aria-label="播放音频">
+      <svg class="play-icon" viewBox="0 0 24 24" fill="white">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" fill="white">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+      </svg>
+    </button>
+    <div class="audio-title">夜空中最亮的星 - 逃跑计划</div>
+  </div>
+  <div class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
+  <div class="time-display">
+    <span class="currentTime">0:00</span>
+    <span class="duration">0:00</span>
+  </div>
+  <audio class="audioElement" style="display: none;">
+    <source src="https://video.tingshuoyiqing.top/%E5%A4%9C%E7%A9%BA%E4%B8%AD%E6%9C%80%E4%BA%AE%E7%9A%84%E6%98%9F.mp3" type="audio/mpeg">
+    浏览器不支持音频播放
+  </audio>
+  <!-- 播放列表 -->
+  <div class="playlist">
+    <ol>
+      <li class="playlist-item" data-src="https://video.tingshuoyiqing.top/%E7%97%B4%E5%BF%83%E7%BB%9D%E5%AF%B9.mp3" data-title="痴心绝对 - 李圣杰">痴心绝对 - 李圣杰</li>
+      <li class="playlist-item" data-src="https://video.tingshuoyiqing.top/%E5%BC%A0%E6%95%AC%E8%BD%A9%20%E5%B0%98%E5%9F%83%E8%90%BD%E5%AE%9A.mp3" data-title="尘埃落定 - 张敬轩">尘埃落定 - 张敬轩</li>
+      <li class="playlist-item" data-src="https://video.tingshuoyiqing.top/%E5%A4%A9%E5%90%8E.mp3" data-title="天后 - 陈势安">天后 - 陈势安</li>
+    </ol>
+  </div>
+</div>
+<style>
+  /* 播放器样式 */
+  .custom-audio-player {
+    width: 100%;
+    background-color: rgba(34, 46, 80, 0.8);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .audio-info { display: flex; align-items: center; margin-bottom: 10px; }
+  .audio-title { 
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 10px;
+    flex-grow: 1;
+  }
+  .play-button {
+    background-color: #0e83cd;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .progress-container {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .progress-bar {
+    height: 100%;
+    background-color: #0e83cd;
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+  .time-display {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+  }
+  .pause-icon { display: none; }
+  
+  /* 播放列表样式 */
+  .playlist {
+    margin-top: 10px;
+  }
+  .playlist-item {
+    color: #fff;
+    padding: 8px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: background-color 0.2s;
+  }
+  .playlist-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 遍历所有播放器
+  document.querySelectorAll('.custom-audio-player').forEach(player => {
+    const audio = player.querySelector('.audioElement');
+    const playBtn = player.querySelector('.play-button');
+    const playIcon = player.querySelector('.play-icon');
+    const pauseIcon = player.querySelector('.pause-icon');
+    const progressBar = player.querySelector('.progress-bar');
+    const progressContainer = player.querySelector('.progress-container');
+    const currentTime = player.querySelector('.currentTime');
+    const duration = player.querySelector('.duration');
+    const playlist = player.querySelector('.playlist');
+    const playlistItems = playlist.querySelectorAll('.playlist-item');
+
+    let isPlaying = false;
+
+    // 初始化时长
+    audio.addEventListener('loadedmetadata', () => {
+      duration.textContent = formatTime(audio.duration);
+    });
+
+    // 更新时间进度
+    audio.addEventListener('timeupdate', () => {
+      const progress = (audio.currentTime / audio.duration) * 100;
+      progressBar.style.width = `${progress}%`;
+      currentTime.textContent = formatTime(audio.currentTime);
+    });
+
+    // 播放/暂停切换
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+      } else {
+        audio.pause();
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+      }
+    });
+
+    // 进度条点击跳转
+    progressContainer.addEventListener('click', (e) => {
+      const rect = progressContainer.getBoundingClientRect();
+      const seekTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+      audio.currentTime = seekTime;
+    });
+
+    // 点击播放列表项切换音频
+    playlistItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const newSrc = item.getAttribute('data-src');
+        const newTitle = item.getAttribute('data-title');
+        
+        audio.src = newSrc;
+        player.querySelector('.audio-title').textContent = newTitle;
+        
+        if (isPlaying) {
+          audio.play();
+        } else {
+          playIcon.style.display = 'block';
+          pauseIcon.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // 时间格式化函数
+  function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  }
+});
 </script>
 
-
-    <div class="fold">
-      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-594673fe" role="button" aria-expanded="false" aria-controls="collapse-594673fe">
-        <div class="fold-arrow">▶</div>痴心绝对
-      </div>
-      <div class="fold-collapse collapse" id="collapse-594673fe">
-        <div class="fold-content">
-          <p>想用一杯Latte把你灌醉<br>好让你能多爱我一点<br>暗恋的滋味你不懂这种感觉<br>早有人陪的你永远不会</p><p>看见你和他在我面前<br>证明我的爱只是愚昧<br>你不懂我的 那些憔悴<br>是你永远不曾过的体会</p><p>为你付出那种伤心你永远不了解<br>我又何苦勉强自己爱上你的一切<br>你又狠狠逼退 我的防备<br>静静关上门来默数我的泪</p><p>明知道让你离开他的世界不可能会<br>我还傻傻等到奇迹出现的那一天<br>直到那一天 你会发现<br>真正爱你的人独自守着伤悲</p><p>看见你和他在我面前<br>证明我的爱只是愚昧<br>你不懂我的 那些憔悴<br>是你永远不曾过的体会</p><p>明知道让你离开他的世界不可能会<br>我还傻傻等到奇迹出现的那一天<br>直到那一天 你会发现<br>真正爱你的人独自守着伤悲</p><p>曾经我以为我自己会后悔<br>不想爱得太多痴心绝对<br>为你落第一滴泪<br>为你作任何改变<br>也唤不回你对我的坚决</p><p>为你付出那种伤心你永远不了解<br>我又何苦勉强自己爱上你的一切<br>你又狠狠逼退 我的防备<br>静静关上门来默数我的泪</p><p>明知道让你离开他的世界不可能会<br>我还傻傻等到奇迹出现的那一天<br>直到那一天 你会发现<br>真正爱你的人独自守着伤悲</p><p>直到那一天 你会发现<br>真正爱你的人独自守着伤悲</p>
-        </div>
-      </div>
-    </div>
 
   
 
