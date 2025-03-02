@@ -29,7 +29,7 @@ comments: true
 
   <!-- 修正后的音频路径 -->
   <audio id="audioElement" style="display: none;">
-    <source src="/music/夜空中最亮的星.mp3" type="audio/mpeg">
+    <source src="https://pub-a3f1bd9f229949c4a1c424d879a5badf.r2.dev/%E5%A4%9C%E7%A9%BA%E4%B8%AD%E6%9C%80%E4%BA%AE%E7%9A%84%E6%98%9F.mp3" type="audio/mpeg">
     你的浏览器不支持音频播放。
   </audio>
 </div>

@@ -2,6 +2,11 @@
 title: 音悦
 date: 2025-03-01 21:19:07
 ---
+
+{% note warning %}
+如果音乐无法播放，请开魔法
+{% endnote %}
+
 {% raw %}
 <div class="custom-audio-player">
   <div class="audio-info">
@@ -27,7 +32,7 @@ date: 2025-03-01 21:19:07
 
   <!-- 修正后的音频路径 -->
   <audio id="audioElement" style="display: none;">
-    <source src="/music/痴心绝对.mp3" type="audio/mpeg">
+    <source src="https://pub-a3f1bd9f229949c4a1c424d879a5badf.r2.dev/M800003kIRU93Grw5P.mp3" type="audio/mpeg">
     你的浏览器不支持音频播放。
   </audio>
 </div>

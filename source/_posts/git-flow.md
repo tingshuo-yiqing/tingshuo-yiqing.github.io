@@ -1,13 +1,15 @@
 ---
 title: git 使用指北与问题解决
 date: 2025-02-20 15:00:00
-categories: git
-tags: git
+tags: 
+  - git
+  - 版本控制
 excerpt:
   - git的基本操作和配置
   - 分支管理和版本控制实践
   - SSH秘钥的创建和端口配置
 comments: true
+sticky: 90
 ---
 {% note info %}
 

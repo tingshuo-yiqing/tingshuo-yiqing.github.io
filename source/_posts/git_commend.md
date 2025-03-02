@@ -1,8 +1,9 @@
 ---
 title: git回滚
 date: 2025-2-23 13:58:14
-tags: git
-categories: git
+tags: 
+  - git
+  - 版本控制
 excerpt: git的回滚、远程同步和一些小技巧
 comments: true
 ---
