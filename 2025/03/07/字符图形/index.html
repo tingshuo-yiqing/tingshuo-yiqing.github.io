@@ -19,27 +19,26 @@
   <meta name="author" content="ting">
   <meta name="keywords" content="">
   
-    <meta name="description" content="基于github issue的utterences评论系统，包含about页">
+    <meta name="description" content="使用C语言的for循环打印各种字符图形，包括三角形、金字塔等常见图案">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为Fluid添加评论系统">
-<meta property="og:url" content="http://tingshuoyiqing.top/2025/02/23/comment-sys/index.html">
+<meta property="og:title" content="C语言for循环输出字符图形">
+<meta property="og:url" content="http://tingshuoyiqing.top/2025/03/07/%E5%AD%97%E7%AC%A6%E5%9B%BE%E5%BD%A2/index.html">
 <meta property="og:site_name" content="听说">
-<meta property="og:description" content="基于github issue的utterences评论系统，包含about页">
+<meta property="og:description" content="使用C语言的for循环打印各种字符图形，包括三角形、金字塔等常见图案">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250224090359554.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250224091216161.png">
-<meta property="article:published_time" content="2025-02-23T02:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-24T01:30:25.476Z">
+<meta property="article:published_time" content="2025-03-07T07:35:00.000Z">
+<meta property="article:modified_time" content="2025-03-07T10:23:04.384Z">
 <meta property="article:author" content="ting">
-<meta property="article:tag" content="comment">
+<meta property="article:tag" content="C语言">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="字符图形">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250224090359554.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>为Fluid添加评论系统 - 听说</title>
+  <title>C语言for循环输出字符图形 - 听说</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -50,8 +49,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -238,7 +235,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">为Fluid添加评论系统</span>
+            <span id="subtitle">C语言for循环输出字符图形</span>
           
         </div>
 
@@ -249,8 +246,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-23 10:00" pubdate>
-          2025年2月23日 上午
+        <time datetime="2025-03-07 15:35" pubdate>
+          2025年3月7日 下午
         </time>
       </span>
     
@@ -261,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          325 字
+          736 字
         
       </span>
     
@@ -272,7 +269,7 @@
         
         
         
-          3 分钟
+          7 分钟
         
       </span>
     
@@ -318,30 +315,78 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">为Fluid添加评论系统</h1>
+            <h1 id="seo-header">C语言for循环输出字符图形</h1>
             
             
               <div class="markdown-body">
                 
                 <div class="note note-info">
-            <p>缓缓飘落的枫叶像思念</p><p>我点燃烛火温暖岁末的秋天</p>
+            <p>编程就像搭积木，简单的循环也能创造出美丽的图案</p>
           </div>
-<h2 id="简单介绍">简单介绍</h2>
-<p>utterances是一个基于github issue的评论系统，它利用github的issue来存储评论。</p>
-<p>当访客在博客上发表评论时，会在对应的仓库中创建一个issue，issue的内容就是评论的内容所以要有一个公开的仓库来存储评论。</p>
-<p>构建这个评论系统只需要一个github账号就可以了，还是非常方便的。</p>
-<h2 id="搭建过程">搭建过程</h2>
-<p>先安装utterances，打开 <a target="_blank" rel="noopener" href="https://github.com/apps/utterances">utterances - GitHub App</a> 点击 Install 进入安装页面</p>
-<p>按照提示一步一步填入对应的信息</p>
-<p>首先是在仓库访问权限<code>Repositeory access</code>选择仅选定的仓库<code>Only select repositories</code>，然后选择自己的博客仓库（比如我就是 <code>tingshuo-yiqing/tingshuo-yiqing.github.io</code>，也可以安装到其他仓库），然后点击 Install<br>
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" srcset="/img/loading.gif" lazyload data-original="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250224090359554.png" alt=""></p>
-<p>这时已经配置好了，接下来有一些个性化设置让你选择。</p>
-<p><code>Blog Post ↔️ Issue Mapping</code>表示 issues 标题和博客 posts 的映射关系，默认即可。</p>
-<p>把主题配置文件(<code>_config.theme.yml</code>)的 <code>enable: true</code> 和<code>type: utterances</code> 打开,再把 <code>utterances</code> 对应的参数改成HTML里面的。</p>
-<p>复制最底下的HTML代码到博客的 <code>about</code> 中。<br>
-然后在 <code>index.md</code> 中添加 <code>comments: true</code> 即可。</p>
-<p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" srcset="/img/loading.gif" lazyload data-original="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250224091216161.png" alt=""></p>
-<p>这样就可以在 about 页添加评论了。</p>
+<h2 id="1-基本三角形">1. 基本三角形</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span> i, j, rows = <span class="hljs-number">5</span>;<br>    <br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt;= rows; i++) &#123;<br>        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">1</span>; j &lt;= i; j++) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;* &quot;</span>);<br>        &#125;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>输出结果：</strong></p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-bullet">* </span><br><span class="hljs-bullet"></span><span class="hljs-bullet">* </span>* <br><span class="hljs-bullet">* </span>* * <br><span class="hljs-bullet">* </span>* * * <br><span class="hljs-bullet">* </span>* * * * <br></code></pre></td></tr></table></figure>
+<p><strong>代码解析：</strong></p>
+<ul>
+<li>外层循环控制行数</li>
+<li>内层循环控制每行打印的星号数量</li>
+<li><code>printf(&quot;\n&quot;)</code>用于换行</li>
+</ul>
+<h2 id="2-倒三角形">2. 倒三角形</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span> i, j, rows = <span class="hljs-number">5</span>;<br>    <br>    <span class="hljs-keyword">for</span>(i = rows; i &gt;= <span class="hljs-number">1</span>; i--) &#123;<br>        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">1</span>; j &lt;= i; j++) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;* &quot;</span>);<br>        &#125;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>输出结果：</strong></p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-bullet">* </span>* * * * <br><span class="hljs-bullet">* </span>* * * <br><span class="hljs-bullet">* </span>* * <br><span class="hljs-bullet">* </span>* <br><span class="hljs-bullet">* </span><br></code></pre></td></tr></table></figure>
+<h2 id="3-金字塔">3. 金字塔</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span> i, j, space, rows = <span class="hljs-number">5</span>;<br>    <br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt;= rows; i++) &#123;<br>        <span class="hljs-comment">// 打印空格</span><br>        <span class="hljs-keyword">for</span>(space = <span class="hljs-number">1</span>; space &lt;= rows - i; space++) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; &quot;</span>);<br>        &#125;<br>        <br>        <span class="hljs-comment">// 打印星号</span><br>        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">1</span>; j &lt;= <span class="hljs-number">2</span>*i<span class="hljs-number">-1</span>; j++) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*&quot;</span>);<br>        &#125;<br>        <br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>输出结果：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">    *</span><br>   <span class="hljs-strong">***</span><br><span class="hljs-strong">  **</span><span class="hljs-strong">***</span><br><span class="hljs-strong"> **</span><span class="hljs-strong">****</span>*<br><span class="hljs-strong">****</span><span class="hljs-strong">****</span><span class="hljs-emphasis">*</span><br></code></pre></td></tr></table></figure>
+<p><strong>代码解析（金字塔结构）：</strong></p>
+<ol>
+<li>空格控制逻辑分析：
+<ul>
+<li>每行前导空格数 = 总行数 - 当前行号（rows - i）</li>
+<li>示例演示：当总行数rows=5时，第1行需要4个空格（5-1）</li>
+</ul>
+</li>
+<li>星号打印原理：
+<ul>
+<li>星号数量遵循2n-1的等差数列公式（n为当前行号）</li>
+<li>数学验证：第3行（i=3）星号数 = 2*3-1 = 5</li>
+</ul>
+</li>
+<li>循环结构解析：
+<ul>
+<li>外层循环：控制金字塔高度（i从1到rows）</li>
+<li>内层循环1：控制前导空格（space从1到rows-i）</li>
+<li>内层循环2：控制星号打印（j从1到2*i-1）</li>
+</ul>
+</li>
+<li>常见调试问题：
+<ul>
+<li>星号显示不齐：检查空格循环是否先于星号循环执行</li>
+<li>金字塔变形：确认星号数公式是否正确应用</li>
+<li>边界错误：注意循环条件是否包含等号（&lt;=）</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-空心金字塔">4. 空心金字塔</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span> i, j, space, rows = <span class="hljs-number">5</span>;<br>    <br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt;= rows; i++) &#123;<br>        <span class="hljs-comment">// 打印空格</span><br>        <span class="hljs-keyword">for</span>(space = <span class="hljs-number">1</span>; space &lt;= rows - i; space++) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; &quot;</span>);<br>        &#125;<br>        <br>        <span class="hljs-comment">// 打印星号</span><br>        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">1</span>; j &lt;= <span class="hljs-number">2</span>*i<span class="hljs-number">-1</span>; j++) &#123;<br>            <span class="hljs-keyword">if</span>(j == <span class="hljs-number">1</span> || j == <span class="hljs-number">2</span>*i<span class="hljs-number">-1</span> || i == rows) &#123;<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*&quot;</span>);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; &quot;</span>);<br>            &#125;<br>        &#125;<br>        <br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>输出结果：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">    *</span><br>   * *<br><span class="hljs-bullet">  *</span>   *<br><span class="hljs-bullet"> *</span>     *<br><span class="hljs-strong">****</span><span class="hljs-strong">****</span><span class="hljs-emphasis">*</span><br></code></pre></td></tr></table></figure>
+<h2 id="5-菱形">5. 菱形</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span> i, j, space, rows = <span class="hljs-number">5</span>;<br>    <br>    <span class="hljs-comment">// 上半部分</span><br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt;= rows; i++) &#123;<br>        <span class="hljs-keyword">for</span>(space = <span class="hljs-number">1</span>; space &lt;= rows - i; space++) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; &quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">1</span>; j &lt;= <span class="hljs-number">2</span>*i<span class="hljs-number">-1</span>; j++) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*&quot;</span>);<br>        &#125;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    &#125;<br>    <br>    <span class="hljs-comment">// 下半部分</span><br>    <span class="hljs-keyword">for</span>(i = rows<span class="hljs-number">-1</span>; i &gt;= <span class="hljs-number">1</span>; i--) &#123;<br>        <span class="hljs-keyword">for</span>(space = <span class="hljs-number">1</span>; space &lt;= rows - i; space++) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; &quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">1</span>; j &lt;= <span class="hljs-number">2</span>*i<span class="hljs-number">-1</span>; j++) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*&quot;</span>);<br>        &#125;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>输出结果：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">    *</span><br>   <span class="hljs-strong">***</span><br><span class="hljs-strong">  **</span><span class="hljs-strong">***</span><br><span class="hljs-strong"> **</span><span class="hljs-strong">****</span>*<br><span class="hljs-strong">****</span><span class="hljs-strong">****</span>*<br> <span class="hljs-strong">****</span><span class="hljs-strong">***</span><br><span class="hljs-strong">  **</span><span class="hljs-strong">***</span><br><span class="hljs-strong">   **</span>*<br><span class="hljs-code">    *</span><br></code></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<p>通过简单的for循环嵌套，我们可以创建各种有趣的字符图形。掌握这些基础图案后，你可以尝试：</p>
+<ul>
+<li>改变图形大小</li>
+<li>使用不同字符</li>
+<li>组合不同图案</li>
+<li>添加颜色（如果支持）</li>
+</ul>
+<p>这些练习不仅能加深对循环的理解，还能培养编程思维和创造力。</p>
 
                 
               </div>
@@ -350,11 +395,36 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/comment/" class="print-no-link">#comment</a>
+        <a href="/tags/C%E8%AF%AD%E8%A8%80/" class="print-no-link">#C语言</a>
+      
+        <a href="/tags/%E7%BC%96%E7%A8%8B/" class="print-no-link">#编程</a>
+      
+        <a href="/tags/%E5%AD%97%E7%AC%A6%E5%9B%BE%E5%BD%A2/" class="print-no-link">#字符图形</a>
       
     </div>
   
@@ -366,8 +436,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>为Fluid添加评论系统</div>
-      <div>http://tingshuoyiqing.top/2025/02/23/comment-sys/</div>
+      <div>C语言for循环输出字符图形</div>
+      <div>http://tingshuoyiqing.top/2025/03/07/字符图形/</div>
     </div>
     <div class="license-meta">
       
@@ -379,7 +449,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年2月23日</div>
+          <div>2025年3月7日</div>
         </div>
       
       
@@ -411,18 +481,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/02/23/git_commend/" title="git回滚">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">git回滚</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/02/20/git-flow/" title="git 使用指北与问题解决">
-                        <span class="hidden-mobile">git 使用指北与问题解决</span>
+                      <a href="/2025/03/02/fun/" title="穷游庐山">
+                        <span class="hidden-mobile">穷游庐山</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -514,11 +578,6 @@
 
 
   
-
-
-  
-  
-
 
 
 
