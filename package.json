@@ -29,6 +29,6 @@
     "hexo-theme-fluid": "^1.9.8",
     "hexo-theme-landscape": "^1.0.0",
     "markdown-it-mermaid": "^0.2.5",
-    "mermaid": "^11.4.1"
+    "mermaid": "^11.12.2"
   }
 }
