@@ -1,0 +1,291 @@
+---
+title: 关于hexo博客fluid主题的音乐和视频配置
+date: '2025-03-02 14:19:07'
+layout: post
+permalink: 2025/03/02/music-dev/
+disableNunjucks: true
+comments: true
+comment: true
+math: false
+recovered_from: 13fb75b4490e90a4cfb7bac3306d8bdfbd441fa2
+tags:
+  - 网站配置
+  - 音乐
+  - 前端
+categories: []
+excerpt: 关于网站的音乐和视频配置，我不懂前端，这些代码来源于deepseek，我验证过是可用的
+---
+<blockquote>
+<p>如果有托管平台最好了，就可以省去很多麻烦。使用外链直接嵌入网页，让ai提供代码模版</p>
+</blockquote>
+<h2 id="音乐">音乐</h2>
+<p>音乐一般有两种方法：</p>
+<ol>
+<li>将音乐文件放在你的博客的source文件夹下，然后在你的markdown文件中使用<code>相对路径</code>来嵌入到markdown文件中</li>
+<li>外链嵌入</li>
+</ol>
+<p>简单比较：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本地嵌入</td>
+<td>完全控制/无第三方依赖</td>
+<td>占用存储空间/需处理版权</td>
+</tr>
+<tr>
+<td>外链嵌入</td>
+<td>零存储压力/平台功能丰富</td>
+<td>依赖第三方稳定性</td>
+</tr>
+</tbody>
+</table>
+<h3 id="本地MP3文件嵌入">本地MP3文件嵌入</h3>
+<p>用这个HTML代码嵌入你的markdown文件中,将音乐的链接替换成你的音乐路径.</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"custom-audio-player"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">audio</span> </span><br><span class="hljs-tag">    <span class="hljs-attr">controls</span> </span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">"width: 100%; margin: 1rem 0;"</span></span><br><span class="hljs-tag">    <span class="hljs-attr">data-cover</span>=<span class="hljs-string">"/music/cover.jpg"</span></span><br><span class="hljs-tag">  &gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/music/xxx.mp3"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"audio/mpeg"</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">audio</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 可选：自定义样式 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.custom-audio-player</span> <span class="hljs-selector-tag">audio</span> {</span><br><span class="language-css">  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>;</span><br><span class="language-css">  <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">2px</span> <span class="hljs-number">6px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0.1</span>);</span><br><span class="language-css">}</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
+<h4 id="效果展示：">效果展示：</h4>
+<div class="custom-audio-player">
+  <audio controls="" style="width: 100%; margin: 1rem 0;" data-cover="/music/cover.jpg" preload="none">
+    <source src="/music/痴心绝对.mp3" type="audio/mpeg">
+  </audio>
+</div>
+<!-- 可选：自定义样式 -->
+<style>
+.custom-audio-player audio {
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+</style>
+<h3 id="外链嵌入">外链嵌入</h3>
+<p>将以下代码嵌入你的markdown文件中,将音乐的链接替换成你的音乐链接.</p>
+<p>不过这个代码有一点小瑕疵，就是一个页面最好只有一个音频，不然会起冲突。如果想要一个页面可以放多个，请把这段代码喂给deepseek修改。</p>
+
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-dcdac752" role="button" aria-expanded="false" aria-controls="collapse-dcdac752">
+        <div class="fold-arrow">▶</div>deeseek优化后的代码块
+      </div>
+      <div class="fold-collapse collapse" id="collapse-dcdac752">
+        <div class="fold-content">
+          <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><code class="hljs html">{% raw %}<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"custom-audio-player"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"audio-info"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"play-button"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"playButton"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"播放音频"</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"play-icon"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"white"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M8 5v14l11-7z"</span>/&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pause-icon"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"white"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M6 19h4V5H6v14zm8-14v14h4V5h-4z"</span>/&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"audio-title"</span>&gt;</span>你的音乐标题 - 歌手<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>      /* 放你的音乐标题 */<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"progress-container"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"progressContainer"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"progress-bar"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"progressBar"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"time-display"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"currentTime"</span>&gt;</span>0:00<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"duration"</span>&gt;</span>0:00<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>  <span class="hljs-comment">&lt;!-- 修正后的音频路径 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">audio</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"audioElement"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display: none;"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"你的视频链接"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"audio/mpeg"</span>&gt;</span>      /* 放你的链接 */<br>    你的浏览器不支持音频播放。<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">audio</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">  <span class="hljs-comment">/* 自定义播放器样式 */</span></span><br><span class="language-css">  <span class="hljs-selector-class">.custom-audio-player</span> {</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css">    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">34</span>, <span class="hljs-number">46</span>, <span class="hljs-number">80</span>, <span class="hljs-number">0.8</span>);</span><br><span class="language-css">    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">padding</span>: <span class="hljs-number">12px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">margin</span>: <span class="hljs-number">1.5rem</span> <span class="hljs-number">0</span>;</span><br><span class="language-css">    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">4px</span> <span class="hljs-number">6px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.1</span>);</span><br><span class="language-css">  }</span><br><span class="language-css">  <span class="hljs-selector-class">.audio-info</span> { <span class="hljs-attribute">display</span>: flex; <span class="hljs-attribute">align-items</span>: center; <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">10px</span>; }</span><br><span class="language-css">  <span class="hljs-selector-class">.audio-title</span> { </span><br><span class="language-css">    <span class="hljs-attribute">color</span>: <span class="hljs-number">#ffffff</span>;</span><br><span class="language-css">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1rem</span>;</span><br><span class="language-css">    <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">600</span>;</span><br><span class="language-css">    <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">10px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">flex-grow</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">  }</span><br><span class="language-css">  <span class="hljs-selector-class">.play-button</span> {</span><br><span class="language-css">    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#0e83cd</span>;</span><br><span class="language-css">    <span class="hljs-attribute">border</span>: none;</span><br><span class="language-css">    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">36px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">36px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">cursor</span>: pointer;</span><br><span class="language-css">    <span class="hljs-attribute">transition</span>: background-color <span class="hljs-number">0.3s</span>;</span><br><span class="language-css">    <span class="hljs-attribute">display</span>: flex;</span><br><span class="language-css">    <span class="hljs-attribute">justify-content</span>: center;</span><br><span class="language-css">    <span class="hljs-attribute">align-items</span>: center;</span><br><span class="language-css">  }</span><br><span class="language-css">  <span class="hljs-selector-class">.progress-container</span> {</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">6px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0.2</span>);</span><br><span class="language-css">    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">8px</span>;</span><br><span class="language-css">  }</span><br><span class="language-css">  <span class="hljs-selector-class">.progress-bar</span> {</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css">    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#0e83cd</span>;</span><br><span class="language-css">    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">0%</span>;</span><br><span class="language-css">    <span class="hljs-attribute">transition</span>: width <span class="hljs-number">0.1s</span> linear;</span><br><span class="language-css">  }</span><br><span class="language-css">  <span class="hljs-selector-class">.time-display</span> {</span><br><span class="language-css">    <span class="hljs-attribute">display</span>: flex;</span><br><span class="language-css">    <span class="hljs-attribute">justify-content</span>: space-between;</span><br><span class="language-css">    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0.8</span>);</span><br><span class="language-css">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.8rem</span>;</span><br><span class="language-css">  }</span><br><span class="language-css">  <span class="hljs-selector-class">.pause-icon</span> { <span class="hljs-attribute">display</span>: none; }</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'DOMContentLoaded'</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {</span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> audioElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'audioElement'</span>);</span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> playButton = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'playButton'</span>);</span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> playIcon = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'.play-icon'</span>);</span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> pauseIcon = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'.pause-icon'</span>);</span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> progressBar = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'progressBar'</span>);</span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> progressContainer = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'progressContainer'</span>);</span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> currentTimeDisplay = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'currentTime'</span>);</span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> durationDisplay = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'duration'</span>);</span><br><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-comment">// 初始化时间显示</span></span><br><span class="language-javascript">  audioElement.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'loadedmetadata'</span>, <span class="hljs-function">() =&gt;</span> {</span><br><span class="language-javascript">    durationDisplay.<span class="hljs-property">textContent</span> = <span class="hljs-title function_">formatTime</span>(audioElement.<span class="hljs-property">duration</span>);</span><br><span class="language-javascript">  });</span><br><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-comment">// 进度条更新</span></span><br><span class="language-javascript">  audioElement.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'timeupdate'</span>, <span class="hljs-function">() =&gt;</span> {</span><br><span class="language-javascript">    <span class="hljs-keyword">const</span> percent = (audioElement.<span class="hljs-property">currentTime</span> / audioElement.<span class="hljs-property">duration</span>) * <span class="hljs-number">100</span>;</span><br><span class="language-javascript">    progressBar.<span class="hljs-property">style</span>.<span class="hljs-property">width</span> = <span class="hljs-string">`<span class="hljs-subst">${percent}</span>%`</span>;</span><br><span class="language-javascript">    currentTimeDisplay.<span class="hljs-property">textContent</span> = <span class="hljs-title function_">formatTime</span>(audioElement.<span class="hljs-property">currentTime</span>);</span><br><span class="language-javascript">  });</span><br><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-comment">// 播放/暂停控制</span></span><br><span class="language-javascript">  playButton.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'click'</span>, <span class="hljs-function">() =&gt;</span> {</span><br><span class="language-javascript">    audioElement.<span class="hljs-property">paused</span> ? audioElement.<span class="hljs-title function_">play</span>() : audioElement.<span class="hljs-title function_">pause</span>();</span><br><span class="language-javascript">    playIcon.<span class="hljs-property">style</span>.<span class="hljs-property">display</span> = audioElement.<span class="hljs-property">paused</span> ? <span class="hljs-string">'block'</span> : <span class="hljs-string">'none'</span>;</span><br><span class="language-javascript">    pauseIcon.<span class="hljs-property">style</span>.<span class="hljs-property">display</span> = audioElement.<span class="hljs-property">paused</span> ? <span class="hljs-string">'none'</span> : <span class="hljs-string">'block'</span>;</span><br><span class="language-javascript">  });</span><br><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-comment">// 点击进度条跳转</span></span><br><span class="language-javascript">  progressContainer.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'click'</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {</span><br><span class="language-javascript">    <span class="hljs-keyword">const</span> rect = progressContainer.<span class="hljs-title function_">getBoundingClientRect</span>();</span><br><span class="language-javascript">    <span class="hljs-keyword">const</span> percent = (e.<span class="hljs-property">clientX</span> - rect.<span class="hljs-property">left</span>) / rect.<span class="hljs-property">width</span>;</span><br><span class="language-javascript">    audioElement.<span class="hljs-property">currentTime</span> = percent * audioElement.<span class="hljs-property">duration</span>;</span><br><span class="language-javascript">  });</span><br><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-comment">// 时间格式化函数</span></span><br><span class="language-javascript">  <span class="hljs-keyword">function</span> <span class="hljs-title function_">formatTime</span>(<span class="hljs-params">seconds</span>) {</span><br><span class="language-javascript">    <span class="hljs-keyword">const</span> mins = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(seconds / <span class="hljs-number">60</span>);</span><br><span class="language-javascript">    <span class="hljs-keyword">const</span> secs = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(seconds % <span class="hljs-number">60</span>);</span><br><span class="language-javascript">    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${mins}</span>:<span class="hljs-subst">${secs.toString().padStart(<span class="hljs-number">2</span>, <span class="hljs-string">'0'</span>)}</span>`</span>;</span><br><span class="language-javascript">  }</span><br><span class="language-javascript">});</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>{% endraw %}<br></code></pre></td></tr></tbody></table></figure>
+        </div>
+      </div>
+    </div>
+<h4 id="效果展示：-2">效果展示：</h4>
+
+<div class="custom-audio-player">
+  <div class="audio-info">
+    <button class="play-button" id="playButton" aria-label="播放音频">
+      <svg class="play-icon" viewBox="0 0 24 24" fill="white">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" fill="white">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+      </svg>
+    </button>
+    <div class="audio-title">天后 - 陈势安</div>
+  </div>
+
+  <div class="progress-container" id="progressContainer">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div class="time-display">
+    <span id="currentTime">0:00</span>
+    <span id="duration">0:00</span>
+  </div>
+
+  <!-- 修正后的音频路径 -->
+  <audio id="audioElement" style="display: none;" preload="none">
+    <source src="https://pub-a3f1bd9f229949c4a1c424d879a5badf.r2.dev/%E5%A4%A9%E5%90%8E.mp3" type="audio/mpeg">
+    你的浏览器不支持音频播放。
+  </audio>
+</div>
+
+<style>
+  /* 自定义播放器样式 */
+  .custom-audio-player {
+    width: 100%;
+    background-color: rgba(34, 46, 80, 0.8);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .audio-info { display: flex; align-items: center; margin-bottom: 10px; }
+  .audio-title { 
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 10px;
+    flex-grow: 1;
+  }
+  .play-button {
+    background-color: #0e83cd;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .progress-container {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .progress-bar {
+    height: 100%;
+    background-color: #0e83cd;
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+  .time-display {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+  }
+  .pause-icon { display: none; }
+</style>
+
+
+
+<h2 id="视频">视频</h2>
+<p>将以下代码（适合cloudflare的R2储存桶）嵌入你的markdown文件中,记得将视频的链接和封面链接替换成你的视频链接和封面链接.</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs HTML"><span class="hljs-comment">&lt;!-- 修改后的视频容器 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"custom-video-container"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"video-wrapper"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">video</span> </span><br><span class="hljs-tag">      <span class="hljs-attr">controls</span></span><br><span class="hljs-tag">      <span class="hljs-attr">preload</span>=<span class="hljs-string">"metadata"</span></span><br><span class="hljs-tag">      <span class="hljs-attr">poster</span>=<span class="hljs-string">"https://xxx.jpg"</span>         /* <span class="hljs-attr">改成你的封面链接</span>*/</span><br><span class="hljs-tag">      <span class="hljs-attr">style</span>=<span class="hljs-string">"object-fit: contain;"</span>  &lt;!<span class="hljs-attr">--</span> <span class="hljs-attr">关键属性</span> <span class="hljs-attr">--</span>&gt;</span><br>    &gt;<br>      <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://xxx.mp4"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"video/mp4"</span>&gt;</span>    /* 改成你的视频链接*/<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-comment">/* 新增核心适配代码 */</span></span><br><span class="language-css"><span class="hljs-selector-class">.custom-video-container</span> {</span><br><span class="language-css">  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">800px</span>;</span><br><span class="language-css">  <span class="hljs-attribute">margin</span>: <span class="hljs-number">1.5rem</span> auto;</span><br><span class="language-css">}</span><br><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.video-wrapper</span> {</span><br><span class="language-css">  <span class="hljs-attribute">position</span>: relative;</span><br><span class="language-css">  <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">56.25%</span>; <span class="hljs-comment">/* 16:9比例计算 (9/16=56.25%) */</span></span><br><span class="language-css">  <span class="hljs-attribute">background</span>: <span class="hljs-number">#000</span>;</span><br><span class="language-css">  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>;</span><br><span class="language-css">  <span class="hljs-attribute">overflow</span>: hidden;</span><br><span class="language-css">  <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">2px</span> <span class="hljs-number">8px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0.1</span>);</span><br><span class="language-css">}</span><br><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.video-wrapper</span> <span class="hljs-selector-tag">video</span> {</span><br><span class="language-css">  <span class="hljs-attribute">position</span>: absolute;</span><br><span class="language-css">  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css">  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css">}</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
+<h4 id="效果展示：-3">效果展示：</h4>
+<div class="custom-video-container">
+  <div class="video-wrapper">
+    <video controls="" preload="none" style="object-fit: contain;">
+    &gt;
+      <source src="https://video.tingshuoyiqing.top/28553773789-1-192.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+<style>
+/* 新增核心适配代码 */
+.custom-video-container {
+  max-width: 800px;
+  margin: 1.5rem auto;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* 16:9比例计算 (9/16=56.25%) */
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
+<p>这是我在B站上下载的一个视频，所以有B站的水印。我把它储存在了cloudflare的R2储存桶上。</p>
+<p>关于这些视频文件，你可以上传到你的服务器上，然后使用服务器提供的链接。也可以使用一些视频分享网站的链接</p>
+<p>但是第三方平台的视频一般都是有一些限制的，比如水印和弹幕（哔哩哔哩）、无法正常访问（YouTube），等等。</p>
+<p>所以还是找个稳定的托管平台吧。我现在用的是cloudflare的R2，感觉还不错，你也可以尝试一下。</p>
+<p>下面将利用哔哩哔哩和YouTube来演示一下</p>
+<h3 id="哔哩哔哩嵌入方案">哔哩哔哩嵌入方案</h3>
+<ol>
+<li>获取B站嵌入代码<br>
+打开视频页面 → 点击「分享」按钮 → 选择「嵌入代码」</li>
+</ol>
+<p>复制类似以下代码：</p>
+<p>将视频链接复制下来，替换代码中的默认视频链接。</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs HTML"><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//player.bilibili.com/player.html?aid=视频AID&amp;cid=CID&amp;page=1"</span> </span><br><span class="hljs-tag">        <span class="hljs-attr">scrolling</span>=<span class="hljs-string">"no"</span> </span><br><span class="hljs-tag">        <span class="hljs-attr">border</span>=<span class="hljs-string">"0"</span> </span><br><span class="hljs-tag">        <span class="hljs-attr">frameborder</span>=<span class="hljs-string">"no"</span> </span><br><span class="hljs-tag">        <span class="hljs-attr">framespacing</span>=<span class="hljs-string">"0"</span> </span><br><span class="hljs-tag">        <span class="hljs-attr">allowfullscreen</span>=<span class="hljs-string">"true"</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
+<p>建议使用这个deepseek优化过的代码：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs HTML"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bilibili-video-container"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">iframe</span></span><br><span class="hljs-tag">    <span class="hljs-attr">src</span>=<span class="hljs-string">"//player.bilibili.com/player.html?aid=xxxxx&amp;cid=xxxxx&amp;page=1"</span></span><br><span class="hljs-tag">    <span class="hljs-attr">scrolling</span>=<span class="hljs-string">"no"</span></span><br><span class="hljs-tag">    <span class="hljs-attr">frameborder</span>=<span class="hljs-string">"no"</span></span><br><span class="hljs-tag">    <span class="hljs-attr">allowfullscreen</span></span><br><span class="hljs-tag">    <span class="hljs-attr">loading</span>=<span class="hljs-string">"lazy"</span>                    &lt;!<span class="hljs-attr">--</span> <span class="hljs-attr">延迟加载优化</span> <span class="hljs-attr">--</span>&gt;</span><br>    data-src="https://player.bilibili.com/player.html?aid=xxxxx" <span class="hljs-comment">&lt;!-- 备用 --&gt;</span><br>  &gt;<span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-comment">/* B站专用适配 */</span></span><br><span class="language-css"><span class="hljs-selector-class">.bilibili-video-container</span> {</span><br><span class="language-css">  <span class="hljs-attribute">position</span>: relative;</span><br><span class="language-css">  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">800px</span>;</span><br><span class="language-css">  <span class="hljs-attribute">margin</span>: <span class="hljs-number">1.5rem</span> auto;</span><br><span class="language-css">  <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">56.25%</span>;  <span class="hljs-comment">/* 16:9比例 */</span></span><br><span class="language-css">}</span><br><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.bilibili-video-container</span> <span class="hljs-selector-tag">iframe</span> {</span><br><span class="language-css">  <span class="hljs-attribute">position</span>: absolute;</span><br><span class="language-css">  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css">  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css">  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>;</span><br><span class="language-css">  <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">4px</span> <span class="hljs-number">12px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0.1</span>);</span><br><span class="language-css">}</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
+<h4 id="效果展示：-4">效果展示：</h4>
+<p>B站给的嵌入代码效果：</p>
+<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=114058158153679&amp;bvid=BV1VLPWeREVd&amp;cid=28553773789&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" loading="lazy" title="嵌入视频">
+</iframe><br>
+<p>deepseek优化的嵌入代码效果：</p>
+<div class="bilibili-video-container">
+  <iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=114058158153679&amp;bvid=BV1VLPWeREVd&amp;cid=28553773789&amp;p=1" scrolling="no" frameborder="no" allowfullscreen="" loading="lazy" <!--="" 延迟加载优化="" --="" title="嵌入视频">
+    data-src="https://player.bilibili.com/player.html?aid=xxxxx" <!-- 备用 -->
+  ></iframe>
+</div>
+<style>
+/* B站专用适配 */
+.bilibili-video-container {
+  position: relative;
+  max-width: 800px;
+  margin: 1.5rem auto;
+  padding-top: 56.25%;  /* 16:9比例 */
+}
+
+.bilibili-video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+</style>
+<h3 id="YouTube嵌入方案">YouTube嵌入方案</h3>
+<p>获取YouTube嵌入代码</p>
+<p>打开视频 → 点击「分享」→ 选择「嵌入」→ 复制代码</p>
+<p>示例代码：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs HTML"><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"560"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"315"</span> </span><br><span class="hljs-tag">        <span class="hljs-attr">src</span>=<span class="hljs-string">"https://www.youtube.com/embed/视频ID"</span> </span><br><span class="hljs-tag">        <span class="hljs-attr">frameborder</span>=<span class="hljs-string">"0"</span> </span><br><span class="hljs-tag">        <span class="hljs-attr">allow</span>=<span class="hljs-string">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"</span> </span><br><span class="hljs-tag">        <span class="hljs-attr">allowfullscreen</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
+<p>deepseek优化后的嵌入代码:</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs HTML"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"youtube-video-container"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">iframe</span></span><br><span class="hljs-tag">    <span class="hljs-attr">src</span>=<span class="hljs-string">"https://www.youtube.com/embed/视频ID"</span></span><br><span class="hljs-tag">    <span class="hljs-attr">allow</span>=<span class="hljs-string">"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"</span></span><br><span class="hljs-tag">    <span class="hljs-attr">allowfullscreen</span></span><br><span class="hljs-tag">    <span class="hljs-attr">loading</span>=<span class="hljs-string">"lazy"</span></span><br><span class="hljs-tag">    <span class="hljs-attr">data-src</span>=<span class="hljs-string">"https://www.youtube-nocookie.com/embed/视频ID"</span> &lt;!<span class="hljs-attr">--</span> <span class="hljs-attr">隐私增强</span> <span class="hljs-attr">--</span>&gt;</span><br>  &gt;<span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-comment">/* YouTube专用适配 */</span></span><br><span class="language-css"><span class="hljs-selector-class">.youtube-video-container</span> {</span><br><span class="language-css">  <span class="hljs-attribute">position</span>: relative;</span><br><span class="language-css">  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">800px</span>;</span><br><span class="language-css">  <span class="hljs-attribute">margin</span>: <span class="hljs-number">1.5rem</span> auto;</span><br><span class="language-css">  <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">56.25%</span>;  <span class="hljs-comment">/* 16:9比例 */</span></span><br><span class="language-css">  <span class="hljs-attribute">background</span>: <span class="hljs-number">#000</span>;      <span class="hljs-comment">/* 预加载黑底 */</span></span><br><span class="language-css">}</span><br><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.youtube-video-container</span> <span class="hljs-selector-tag">iframe</span> {</span><br><span class="language-css">  <span class="hljs-attribute">position</span>: absolute;</span><br><span class="language-css">  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css">  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css">  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>;</span><br><span class="language-css">  <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">4px</span> <span class="hljs-number">12px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0.1</span>);</span><br><span class="language-css">}</span><br><span class="language-css"></span><br><span class="language-css"><span class="hljs-comment">/* 暗黑模式适配 */</span></span><br><span class="language-css"><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">prefers-color-scheme</span>: dark) {</span><br><span class="language-css">  <span class="hljs-selector-class">.youtube-video-container</span> {</span><br><span class="language-css">    <span class="hljs-attribute">background</span>: <span class="hljs-number">#111</span>;</span><br><span class="language-css">  }</span><br><span class="language-css">}</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
+<h4 id="效果展示：-5">效果展示：</h4>
+<p>YouTube给的嵌入代码效果：</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kjG92Mb76s8?si=c0aUBx-iz7h4Mzuy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" title="嵌入视频">
+</iframe>
+<p>deepseek优化后的嵌入代码效果：</p>
+<div class="youtube-video-container">
+  <iframe src="https://www.youtube.com/embed/kjG92Mb76s8?si=c0aUBx-iz7h4Mzuy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" data-src="https://www.youtube-nocookie.com/embed/视频ID" <!--="" 隐私增强="" --="" title="嵌入视频">
+  ></iframe>
+</div>
+<style>
+/* YouTube专用适配 */
+.youtube-video-container {
+  position: relative;
+  max-width: 800px;
+  margin: 1.5rem auto;
+  padding-top: 56.25%;  /* 16:9比例 */
+  background: #000;      /* 预加载黑底 */
+}
+
+.youtube-video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+  .youtube-video-container {
+    background: #111;
+  }
+}
+</style>
+<p>这些就是我今天的所有配置日志了。以后再记录关于如何获得cf的R2储存桶的笔记，因为我还没有学计算机网络，对于域名解析不太<br>
+了解。</p>
+<p>我有一个域名无法被访问，我也还没有找到原因。不过应该是域名本身的原因，以ping就全红。等了解的更多了，就自己买一个云服务器玩。</p>
+<p>就不用在网上到处找免费的平台配置了（不过在这个过程中我也学会了很多东西）</p>

@@ -1,0 +1,541 @@
+{
+  "publishedCommit": "13fb75b4490e90a4cfb7bac3306d8bdfbd441fa2",
+  "sourceCommit": "50f82b7d5f3dc1f741e46635a5c27a8ce4d5c8ff",
+  "pages": [
+    {
+      "path": "2025/02/20/git-flow/index.html",
+      "title": "git 使用指北与问题解决",
+      "date": "2025-02-20 15:00:00",
+      "hidden": false,
+      "text": "想用一杯Latte把你灌醉好让你能多爱我一点 1.访问github并汉化 在微软商店安装Watt Toolkit可以直接加速github，然后用qq邮箱或其它邮箱都可以注册一下 搜索框搜索“chinese汉化”认准第一个star7.8k即可，然后安装油猴(Tampermonkey)插件，再安装汉化脚本。还有许多脚本可以安装。 进入文件夹右键打开选项卡，点击用git bash打开 2.安装和配置git 下载地址git-scm.com，镜像下载地址 显示隐藏文件夹： 在VS code中显示隐藏文件夹只需要在设置里找到：Files:Exclude再把**/.git删除即可显示出来 3.git命令行配置 初始化仓库过程用到的命令： bash的基本操作 常用快捷键： 3.基础操作流程 专业名词的理解 git status最常见的命令之一，初学者最好每一个命令就查看一下文件的状态.git status -s/git status --short是精简输出 文件的删除（命令行） 删除后需要git commit提交，如果只是想从工作目区中删除文件，可以使用操作系统的删除命令（rm ）然后再使用git add . 文件删除（IDE） 4.SSH秘钥的创建 生成秘钥（ed25519算法）： 如果一些旧系统不支持ed25519算法的话，可以使用RSA 第一次使用这个命令一直回车即可 在用户文件夹里查看密钥对 添加公钥.pub文件复制粘贴至Github→ Settings → SSH Key，再连接测试一下： 正常会报错：连接测试时出现：ssh: connect to host github.com port 22: Connection timed out通常是因为网络环境无法通过 22 端口连接到 GitHub 的 SSH 服务。可以通过以下步骤解决，官方文档为通过HTTP端口使用SSH 我们需要改HTTPS端口（443）使用SSH。方法为在生成的.ssh文件夹中添加配置文件 粘贴好后按Ecs再英文状态下的:wq保存退出，可以检查一下 再次测试时出现：Hi username ! You've successfully authenticated, but GitHub does not provide shell access.即成功了，我们就可以通过SSH克隆和推送仓库了 5.gitignore的实践 创建.gitignore文件： 常见的.gitignore文件包含： .gitignore 仅对从未被 Git 跟踪过的文件生效。若文件已被提交过，即使后续加入 .gitignore，仍需手动从 Git 中移除。此外，未跟踪但未忽略的文件仍可能导致分支污染，需定期检查工作目录状态（git status） 更多模版可以参考github上的项目：gitignore 6.版本的回滚 使用git reset --hard会重置工作目录到指定的提交，所有未提交的修改都会被删除。需要注意备份或暂存（git stash）这些更改，避免数据丢失。 7.首次推送的命令： 关键是： 添加远程仓库的 URL (Add Remote Origin 推送本地分支到远程仓库 (Push to Remote): 之后便可以 推送后续提交: git push (默认会推送当前分支到其追踪的远程分支) 拉取远程更新: git pull (默认会拉取远程追踪分支的更新并合并到当前分支) 8.深入分支 主分支包含了所有最终修改历史，建议不要乱动。因为你的改动会影响到其它在参与这个项目的人，很可能出现合并冲突。 常见分支 功能 develop（开发分支）dev feature（功能分支）feat release（发布分支） hotfix（热修复分支） bugfix（缺陷分支） support（支持分支） 本地分支 这里可能会出现一个幻觉：我在分支里创建的文件为什么主分支里也有？，不是说都是独立的吗？原因是你未将新建的文件提交（commit）到分支中。此时文件处于“未跟踪”状态（untracked）（即还没有add），切换分支时这些未提交的改动会保留在工作目录中，与分支无关。因为未执行 git add 和 git commit，所以my.log 未被记录到 Git 版本控制中。切换回 master 分支时，未提交的改动（包括未跟踪文件）会保留在工作目录，因此 my.log 仍然存在。 简单来说： 未提交文件：游离于分支外，切换分支时保留。 提交后文件：与分支绑定，切换分支时自动隔离。 当我们提交后： 这样主分支里就没有my.log了，就可以安心在分支里操作不用怕误操作主分支啦 小总结：未提交的文件（untracked files）不属于任何分支，它们会“跟随”你的工作目录。只有提交到分支后，文件才会与分支绑定。 接下来是在分支里修改了文件，如果不提交或保存的话是不会让你切换的 它会让你在切换之前进行git commit或git stash先暂时保存再git stash pop恢复 这样就可以在你的本地分支上安心的操作了 在分支间共享某些文件时（如配置文件），应通过 Git 的合并（git merge）或变基（git rebase）操作实现，而非手动复制文件。 执行删除操作的时候要格外小心 -d用于删除已合并过的分支，即已经被merge了 -D用于强制删除分支（不管是否合并过） 可以在在命令行中查看分支图git log --graph --oneline --decorate --all来可视化分支结构不过可能有一点抽象 远程分支 在github上删除分支时的细节： 虽然在github上删除远程分支很简单，但是会导致本地库中缓存的远程分支与实际远程分支不一致。所以还要在git bash中同步远程分支执行：git remote prune <远程仓库名称> 还有一些细节比如，回溯、打标签",
+      "code": [
+        "git -v\ngit init  #\ngit init -b main   #-b main 明确告诉 Git 将初始分支命名为 main。\n\ngit config --global user.name \"你的名字\"\ngit config --global user.email \"你的邮箱\"\n\ngit config --list #查看刚刚配置的用户名和邮箱\ngit config --global --list # 这个也可以查看配置信息",
+        "git -v\ngit init  #\ngit init -b main   #-b main 明确告诉 Git 将初始分支命名为 main。\n\ngit config --global user.name \"你的名字\"\ngit config --global user.email \"你的邮箱\"\n\ngit config --list #查看刚刚配置的用户名和邮箱\ngit config --global --list # 这个也可以查看配置信息",
+        "Ctrl + C 中断当前命令\nCtrl + L 或 clear: 清屏\nCtrl + A 移动光标到行头\nCtrl + E: 移动光标到行尾\nCtrl + U: 删除光标前的所有字符\nCtrl + K: 删除光标后的所有字符\nCtrl + W: 删除光标前的一个单词\nTab: 自动补全\n↑ / ↓: 浏览历史命令",
+        "Ctrl + C 中断当前命令\nCtrl + L 或 clear: 清屏\nCtrl + A 移动光标到行头\nCtrl + E: 移动光标到行尾\nCtrl + U: 删除光标前的所有字符\nCtrl + K: 删除光标后的所有字符\nCtrl + W: 删除光标前的一个单词\nTab: 自动补全\n↑ / ↓: 浏览历史命令",
+        "echo \"xxx\" # 是将xxx输出到控制台，如果有空格的话要加引号\necho xxx > <file>  # 将xxx写入写入文件中，如果没有就创建一个\necho xxx >> <file> # 将xxx追加写入文件中\n\n\ngit add xxx  # U > A\ngit add .\n# A是已添加索引（会提示你git commit），U是未追踪文件（会提示你git add）\n\ngit commit -m \"提交信息，要准确详细\"\ngit commit     # 进入vim编辑器，编辑\n\ngit log \ngit log -2 #只看最近两条\ngit log --oneline# 更简洁",
+        "echo \"xxx\" # 是将xxx输出到控制台，如果有空格的话要加引号\necho xxx > <file>  # 将xxx写入写入文件中，如果没有就创建一个\necho xxx >> <file> # 将xxx追加写入文件中\n\n\ngit add xxx  # U > A\ngit add .\n# A是已添加索引（会提示你git commit），U是未追踪文件（会提示你git add）\n\ngit commit -m \"提交信息，要准确详细\"\ngit commit     # 进入vim编辑器，编辑\n\ngit log \ngit log -2 #只看最近两条\ngit log --oneline# 更简洁",
+        "git rm <file> # 从暂存区和工作区删除\n\ngit re -cached <file> # 只从暂存区中删除，工作区不变\n\ngit rm -f <file> # 强制删除文件，即使文件在工作区被修改\n\ngit rm -rf <directory> #递归删除所有文件和子目录\n\ngit commit -m \"删除<file>\"",
+        "git rm <file> # 从暂存区和工作区删除\n\ngit re -cached <file> # 只从暂存区中删除，工作区不变\n\ngit rm -f <file> # 强制删除文件，即使文件在工作区被修改\n\ngit rm -rf <directory> #递归删除所有文件和子目录\n\ngit commit -m \"删除<file>\"",
+        "ssh-keygen -t ed25519 -C \"your_email@example.com\"",
+        "ssh-keygen -t ed25519 -C \"your_email@example.com\"",
+        "ssh-keygen -t rsa -b 4096 -C \"your_email@example.com\"",
+        "ssh-keygen -t rsa -b 4096 -C \"your_email@example.com\"",
+        "ssh -T git@github.com",
+        "ssh -T git@github.com",
+        "# 编辑 SSH 配置文件\nvim ~/.ssh/config\n\n# 配置文件内容：\nHost github.com          # 别名，可以自定义\nHostname ssh.github.com   # GitHub SSH 的实际主机名\nPort 443                # 使用 443 端口\nUser git                # 使用 git 用户",
+        "# 编辑 SSH 配置文件\nvim ~/.ssh/config\n\n# 配置文件内容：\nHost github.com          # 别名，可以自定义\nHostname ssh.github.com   # GitHub SSH 的实际主机名\nPort 443                # 使用 443 端口\nUser git                # 使用 git 用户",
+        "# 将不需要推送的文件写入到.gitignore上\necho xxx > .gitignore\n# xxx可以是字符串，文件，文件夹，第一次使用重定向符>\n#如果已经用了.gitignore文件的话，就用>>追加符来添加新的文件或文件夹\nprintf \".xxx\\n.xx\\n\" >> .gitignore\n#前面的.表示在根目录下",
+        "# 将不需要推送的文件写入到.gitignore上\necho xxx > .gitignore\n# xxx可以是字符串，文件，文件夹，第一次使用重定向符>\n#如果已经用了.gitignore文件的话，就用>>追加符来添加新的文件或文件夹\nprintf \".xxx\\n.xx\\n\" >> .gitignore\n#前面的.表示在根目录下",
+        "# 忽略所有 .log 文件,但是保留error.log文件\n*.log\n!error.log\n\n# 忽略 node_modules 目录\nnode_modules/\n\n# 忽略特定文件\nconfig.ini\n\n# 不忽略某个文件(即使前面已经有忽略规则)\n!important.log",
+        "# 忽略所有 .log 文件,但是保留error.log文件\n*.log\n!error.log\n\n# 忽略 node_modules 目录\nnode_modules/\n\n# 忽略特定文件\nconfig.ini\n\n# 不忽略某个文件(即使前面已经有忽略规则)\n!important.log",
+        "# 查看HEAD\ngit log --oneliine --groph # 更加简洁的查看提交ID\ngit reflog  # 含已删除提交历史，可以快速找到提交ID\n\ngit diff HEAD <commit-id> # 对比差异\n\ngit reset --hard HEAD~1  # 彻底回退上一个提交\ngit reset --soft HEAD~1  # 保留修改但回退 commit\n# HEAD~1一般就是提交ID前6个字母或数字",
+        "# 查看HEAD\ngit log --oneliine --groph # 更加简洁的查看提交ID\ngit reflog  # 含已删除提交历史，可以快速找到提交ID\n\ngit diff HEAD <commit-id> # 对比差异\n\ngit reset --hard HEAD~1  # 彻底回退上一个提交\ngit reset --soft HEAD~1  # 保留修改但回退 commit\n# HEAD~1一般就是提交ID前6个字母或数字",
+        "git remote add origin <你的GitHub仓库URL>\ngit remote -v #查看已配置的远程仓库信息\n\ngit push -u origin master #取决于是main还是master且第一次需要 -u",
+        "git remote add origin <你的GitHub仓库URL>\ngit remote -v #查看已配置的远程仓库信息\n\ngit push -u origin master #取决于是main还是master且第一次需要 -u",
+        "git branch -a # 列出远程和本地分支，即所有分支\n\ngit push <远程仓库名称比如origin> <分支名称>  # 推送某个分支\ngit push <远程仓库名称> --all # 推送所有分支\n \ngit push <远程仓库名称> -d <分支名称>",
+        "git branch -a # 列出远程和本地分支，即所有分支\n\ngit push <远程仓库名称比如origin> <分支名称>  # 推送某个分支\ngit push <远程仓库名称> --all # 推送所有分支\n \ngit push <远程仓库名称> -d <分支名称>",
+        "git checkout 提交ID(Commit ID)\ngit checkout 分支\ngit checkout tag\n\ngit tag # 查看标签\ngit tag -d xxx # 删除标签",
+        "git checkout 提交ID(Commit ID)\ngit checkout 分支\ngit checkout tag\n\ngit tag # 查看标签\ngit tag -d xxx # 删除标签"
+      ],
+      "formulas": [],
+      "imageUrls": [
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250219224935829.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250219225253894.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250220073842647.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250219230110370.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250219231851407.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250219232912375.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250219232959200.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250219152152312.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250219152313294.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250220084930823.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250220074831847.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250220085232998.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250222164535621.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250222160617241.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250222092557434.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250222102912825.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250222104045050.png"
+      ],
+      "media": [],
+      "tracks": [],
+      "headings": [
+        {
+          "id": "1-访问github并汉化",
+          "text": "1.访问github并汉化"
+        },
+        {
+          "id": "2-安装和配置git",
+          "text": "2.安装和配置git"
+        },
+        {
+          "id": "显示隐藏文件夹：",
+          "text": "显示隐藏文件夹："
+        },
+        {
+          "id": "3-git命令行配置",
+          "text": "3.git命令行配置"
+        },
+        {
+          "id": "初始化仓库过程用到的命令：",
+          "text": "初始化仓库过程用到的命令："
+        },
+        {
+          "id": "bash的基本操作",
+          "text": "bash的基本操作"
+        },
+        {
+          "id": "3-基础操作流程",
+          "text": "3.基础操作流程"
+        },
+        {
+          "id": "专业名词的理解",
+          "text": "专业名词的理解"
+        },
+        {
+          "id": "文件的删除（命令行）",
+          "text": "文件的删除（命令行）"
+        },
+        {
+          "id": "文件删除（IDE）",
+          "text": "文件删除（IDE）"
+        },
+        {
+          "id": "4-SSH秘钥的创建",
+          "text": "4.SSH秘钥的创建"
+        },
+        {
+          "id": "5-gitignore的实践",
+          "text": "5.gitignore的实践"
+        },
+        {
+          "id": "6-版本的回滚",
+          "text": "6.版本的回滚"
+        },
+        {
+          "id": "7-首次推送的命令：",
+          "text": "7.首次推送的命令："
+        },
+        {
+          "id": "8-深入分支",
+          "text": "8.深入分支"
+        },
+        {
+          "id": "本地分支",
+          "text": "本地分支"
+        },
+        {
+          "id": "远程分支",
+          "text": "远程分支"
+        }
+      ]
+    },
+    {
+      "path": "2025/02/23/comment-sys/index.html",
+      "title": "为Fluid添加评论系统",
+      "date": "2025-02-23 10:00:00",
+      "hidden": false,
+      "text": "缓缓飘落的枫叶像思念我点燃烛火温暖岁末的秋天 简单介绍 utterances是一个基于github issue的评论系统，它利用github的issue来存储评论。 当访客在博客上发表评论时，会在对应的仓库中创建一个issue，issue的内容就是评论的内容所以要有一个公开的仓库来存储评论。 构建这个评论系统只需要一个github账号就可以了，还是非常方便的。 搭建过程 先安装utterances，打开 utterances - GitHub App 点击 Install 进入安装页面 按照提示一步一步填入对应的信息 首先是在仓库访问权限Repositeory access选择仅选定的仓库Only select repositories，然后选择自己的博客仓库（比如我就是 tingshuo-yiqing/tingshuo-yiqing.github.io，也可以安装到其他仓库），然后点击 Install 这时已经配置好了，接下来有一些个性化设置让你选择。 Blog Post ↔️ Issue Mapping表示 issues 标题和博客 posts 的映射关系，默认即可。 把主题配置文件(_config.theme.yml)的 enable: true 和type: utterances 打开,再把 utterances 对应的参数改成HTML里面的。 复制最底下的HTML代码到博客的 about 中。 然后在 index.md 中添加 comments: true 即可。 这样就可以在 about 页添加评论了。",
+      "code": [],
+      "formulas": [],
+      "imageUrls": [
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250224090359554.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250224091216161.png"
+      ],
+      "media": [],
+      "tracks": [],
+      "headings": [
+        {
+          "id": "简单介绍",
+          "text": "简单介绍"
+        },
+        {
+          "id": "搭建过程",
+          "text": "搭建过程"
+        }
+      ]
+    },
+    {
+      "path": "2025/02/23/git_commend/index.html",
+      "title": "git回滚",
+      "date": "2025-02-23 13:58:14",
+      "hidden": false,
+      "text": "如果你愿意一层一层一层的拨开我的心你会发现 你会讶异你是我最压抑 最深处的秘密 2025-2-22 可以通过 git commit -am 命令提交所有文件的修改（当你觉得所有工作都做完以后）。但是如果有新文件，需要先 git add新文件名，再 git commit 提交修改。因为 git commit -am 命令适用于已经跟踪的文件。 如果觉得命令太长了，可以使用alias命令来定义成一个别名,比如： 2025-2-26 回滚 文件回滚 情况一：如果没有add，即没有暂存只在本地修改的话： git restore <file> 可以将修改的文件恢复到最近一次提交的状态 git checkout <commit-hash> <file> 可以将修改的文件恢复到提交的状态 情况二：如果已经add了的话: git restore --staged <file> 取消暂存 再利用情况一 恢复文件，这种操作比较安全 或使用git checkout HEAD <file>，直接恢复到HEAD提交，这个命令会丢失本地的修改 情况三：如果已经commit（未push）了的话： 可以使用git reset --soft HEAD~1，撤销最近的一次提交，保留修改（软回滚，仅仅回退commit，回到add之后的状态。这样git log不会再包含这次提交，但你的修改仍然存在，并处于已暂存的状态） 或者使用git reset HEAD~1，git log同样不包含这次提交，但你的修改仍然存在，并处于未暂存的状态 或者使用git reset --hard HEAD~1，你的修改无法保存，完全恢复到上次提交的状态。 情况四：如果已经push了的话： 总结： 分支回滚 2025-2-23 关于git stash 当你在开发一个分支时，突然发现自己需要切换到另一个分支，但是这个分支还没有提交，但是你又不想提交，因为你还有一些工作没有做完，这时候可以使用git stash命令来保存当前的工作状态，然后切换到另一个分支，等你做完了以后，再切换回来，使用git stash pop命令来恢复之前的工作状态。 关于git pull git pull 是 git fetch 和 git merge 的缩写。git fetch 用于从远程仓库获取最新的代码，而 git merge 则用于将获取到的代码合并到本地分支。但是如果多人共同开发一个分支时，可能会出现冲突。 比如同事A修改了文件A，同事B也修改了文件A，但是同事A先一步提交了，同事B后一步提交，那同事B就会被拒绝提交，因为git merge 会将本地分支和远程分支进行合并，如果有冲突，就会拒绝合并。 所以如果多人共同开发一个分支时，最好使用 git pull --rebase命令，这样有冲突的话，会把你本地的提交放一边，先把远程分支的提交拉下来，然后再把你的提交放回去，这样不仅解决了冲突还保持了分支的线性。 来源于技术爬爬虾 2025-2-27 关于分支合并 关于合并（merge） merge会将两个分支的提交合并成一个新的提交。分支各自的提交记录都会保留，保留整个过程完整的提交记录，可以看到每个成员的贡献。 关于变基（rebase） 来源于GeekHour 关于压缩（squash） 它将多个提交合并成一个提交，从而简化提交历史。虽然会保留所有代码变更的最终结果，但会丢失每个提交的细节信息，从而无法追溯每个中间开发步骤 关于git rm 情况一：如果已经暂存了，就不能直接git rmbash会报错，会导致暂存区的更改丢失。 当你误提交了一个有用的文件时，可以使用git rm --cached <file>来删除，但是会保留在本地 当你决定弃用一个文件的话，可以使用git rm -f <file>来强制删除 情况二：如果没有暂存，就可以直接git rm，会同时删除工作区和暂存区的文件 2025-2-24 文件的常见操作 关于这些系统命令是否需要加git前缀，需要根据这个文件（目录）是否被纳入管理即有没有被add",
+      "code": [
+        "git log --oneline --graph --decorate --all\n\nalias graph = \"git log --oneline --graph --decorate --all\" #将这个命令定义成一个更短的别名",
+        "git log --oneline --graph --decorate --all\n\nalias graph = \"git log --oneline --graph --decorate --all\" #将这个命令定义成一个更短的别名",
+        "git stash # 保存当前的工作状态\ngit stash list # 查看保存的工作状态列表\ngit stash pop # 恢复最近一次保存的工作状态",
+        "git stash # 保存当前的工作状态\ngit stash list # 查看保存的工作状态列表\ngit stash pop # 恢复最近一次保存的工作状态",
+        "git pull = git fetch + git merge",
+        "git pull = git fetch + git merge",
+        "git rebase <branch> # 把当前分支的提交放到<branch>分支的后面\ngit rebase -i <branch> # 交互式的rebase，会弹出一个窗口，让你选择哪些提交要保留，哪些提交要删除\n\n# 冲突解决时\ngit rebase --continue # 继续rebase\n\ngit rebase --skip\ngit rebase --abort # 取消rebase",
+        "git rebase <branch> # 把当前分支的提交放到<branch>分支的后面\ngit rebase -i <branch> # 交互式的rebase，会弹出一个窗口，让你选择哪些提交要保留，哪些提交要删除\n\n# 冲突解决时\ngit rebase --continue # 继续rebase\n\ngit rebase --skip\ngit rebase --abort # 取消rebase",
+        "git rm --cached <file> # 移除跟踪变为Untracked，但还保留在本地上\n\ngit rm -f <file> # 强制删除, 不保留在本地",
+        "git rm --cached <file> # 移除跟踪变为Untracked，但还保留在本地上\n\ngit rm -f <file> # 强制删除, 不保留在本地",
+        "touch <file> # 创建文件\ngit mv <file> <newfile> # 重命名文件\n\necho <content> > <file> # 写入文件\necho <content> >> <file> # 追加文件内容\ncat <file> # 查看文件内容\n\ncp <file> <newfile> # 复制文件\ncp -r <dir> <newdir> # 复制文件夹\n\nmv <file> <newfile> # 重命名文件\n\nmkdir <dir> # 创建文件夹\nmkdir -p <dir1>/<dir2> # 创建递归文件夹\n\nls                  # 列出当前目录文件\nls -l               # 详细信息\nls -a               # 显示隐藏文件\nls -lh              # 以可读格式显示大小\nls -lt              # 按修改时间排序\n\ncd dirname          # 进入目录\ncd ..               # 返回上一级目录\ncd /home/user       # 进入指定目录\ncd ~                # 进入 home 目录\ncd -                # 返回上次所在目录\n\ngit rm -r <dir> # 删除文件夹\ngit rm -rf <dir> # 强制删除文件夹",
+        "touch <file> # 创建文件\ngit mv <file> <newfile> # 重命名文件\n\necho <content> > <file> # 写入文件\necho <content> >> <file> # 追加文件内容\ncat <file> # 查看文件内容\n\ncp <file> <newfile> # 复制文件\ncp -r <dir> <newdir> # 复制文件夹\n\nmv <file> <newfile> # 重命名文件\n\nmkdir <dir> # 创建文件夹\nmkdir -p <dir1>/<dir2> # 创建递归文件夹\n\nls                  # 列出当前目录文件\nls -l               # 详细信息\nls -a               # 显示隐藏文件\nls -lh              # 以可读格式显示大小\nls -lt              # 按修改时间排序\n\ncd dirname          # 进入目录\ncd ..               # 返回上一级目录\ncd /home/user       # 进入指定目录\ncd ~                # 进入 home 目录\ncd -                # 返回上次所在目录\n\ngit rm -r <dir> # 删除文件夹\ngit rm -rf <dir> # 强制删除文件夹"
+      ],
+      "formulas": [],
+      "imageUrls": [
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250226095341508.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250223140435751.png",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250223140917518.png"
+      ],
+      "media": [],
+      "tracks": [],
+      "headings": [
+        {
+          "id": "回滚",
+          "text": "回滚"
+        },
+        {
+          "id": "文件回滚",
+          "text": "文件回滚"
+        },
+        {
+          "id": "分支回滚",
+          "text": "分支回滚"
+        },
+        {
+          "id": "关于git-stash",
+          "text": "关于git stash"
+        },
+        {
+          "id": "关于git-pull",
+          "text": "关于git pull"
+        },
+        {
+          "id": "关于分支合并",
+          "text": "关于分支合并"
+        },
+        {
+          "id": "关于合并（merge）",
+          "text": "关于合并（merge）"
+        },
+        {
+          "id": "关于变基（rebase）",
+          "text": "关于变基（rebase）"
+        },
+        {
+          "id": "关于压缩（squash）",
+          "text": "关于压缩（squash）"
+        },
+        {
+          "id": "关于git-rm",
+          "text": "关于git rm"
+        },
+        {
+          "id": "情况一：如果已经暂存了，就不能直接git-rmbash会报错，会导致暂存区的更改丢失。",
+          "text": "情况一：如果已经暂存了，就不能直接git rmbash会报错，会导致暂存区的更改丢失。"
+        },
+        {
+          "id": "情况二：如果没有暂存，就可以直接git-rm，会同时删除工作区和暂存区的文件",
+          "text": "情况二：如果没有暂存，就可以直接git rm，会同时删除工作区和暂存区的文件"
+        },
+        {
+          "id": "文件的常见操作",
+          "text": "文件的常见操作"
+        }
+      ]
+    },
+    {
+      "path": "2025/02/24/seo/index.html",
+      "title": "关于网站收录那些事",
+      "date": "2025-02-24 15:00:00",
+      "hidden": true,
+      "text": "seo(search engine optimization): 搜索引擎优化 SERP页面( Search Engine Results Page)：一般由付费搜索结果和自然搜索结果组成。 一些常见的搜索引擎结果页： Paid Search（付费广告） Organic Search（自然排名结果） Featured Snippets（精选摘要） Knowledge Cards（知识卡片） Knowledge Panels（知识面板） People Also Ask（相关问题） Image Pack（图片集） Video（视频） Local Pack（本地搜索结果） Top Stories（头条新闻） Rich Snippets（富文本摘要） Shopping（购物广告） Twitter（推特） 搜索引擎原理 爬取 索引 排名 展示 爬虫 这些爬虫从种子url开始，通过超链接发现新的内容。",
+      "code": [],
+      "formulas": [],
+      "imageUrls": [],
+      "media": [],
+      "tracks": [],
+      "headings": [
+        {
+          "id": "搜索引擎原理",
+          "text": "搜索引擎原理"
+        },
+        {
+          "id": "爬虫",
+          "text": "爬虫"
+        }
+      ]
+    },
+    {
+      "path": "2025/03/01/suanfa/index.html",
+      "title": "我接触的第一个算法",
+      "date": "2025-03-01 18:15:41",
+      "hidden": false,
+      "text": "有人疼才显得多么出众 我接触的第一个算法 在机房上第一节程序设计课的时候，我看老师的那个10个数求最大值的C语言程序挺有意思的，和我平时的那些过家家代码有点不同 在下课的时候我也开始尝试了一下，我一开始没有完成。但是我问了deepseek，后来就写出来了。 我一开始的代码是这样的： 一开始我不知道for循环里面怎么写，我也没注意到max = x，我就问deepseek，然后我就理解了： 首先初始化一个max(将第一个x赋max)然后再不断的将新输入的x与其比较。 连续输入10个数，用for循环对每个数进行比较，让更大的x再赋值给max，这样不断更新max的值，确保max始终大于x的值。 我就是没有这种思路所以写不出for循环里比较和更新的程序，于是我又重新写了一下： 然后我就知道了，原来算法里最基础的知识点变量的初始化和变量的动态更新。",
+      "code": [
+        "#include <stdio.h>\n\nint main() {\n    int max, x, i;\n    scanf(\"%d\", &x);\n    max = x;\n    for(i = 1; i < 10; i++) {\n\n    }\n    printf(\"max = %d\", max);\n    return 0;\n}",
+        "#include <stdio.h>\n\nint main() {\n    int max, x, i;\n    scanf(\"%d\", &x);\n    max = x;\n    for(i = 1; i < 10; i++) {\n\n    }\n    printf(\"max = %d\", max);\n    return 0;\n}",
+        "#include <stdio.h>\n\nint main() {\n    int max, x, i;\n    scanf(\"%d\", &x);\n    max = x;\n    for(i = 1; i < 10; i++) {\n        scanf(\"%d\", &x); //循环输入用于比较\n        if(x > max) {\n            max = x;  //如果x大于max，则将更大的x赋值给max\n        }\n    }\n    printf(\"max = %d\", max);  // 输入完10个数后的max就是最大值了\n    return 0;\n}",
+        "#include <stdio.h>\n\nint main() {\n    int max, x, i;\n    scanf(\"%d\", &x);\n    max = x;\n    for(i = 1; i < 10; i++) {\n        scanf(\"%d\", &x); //循环输入用于比较\n        if(x > max) {\n            max = x;  //如果x大于max，则将更大的x赋值给max\n        }\n    }\n    printf(\"max = %d\", max);  // 输入完10个数后的max就是最大值了\n    return 0;\n}"
+      ],
+      "formulas": [],
+      "imageUrls": [
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250301220744995.jpg"
+      ],
+      "media": [
+        "https://pub-a3f1bd9f229949c4a1c424d879a5badf.r2.dev/%E5%A4%A9%E5%90%8E.mp3"
+      ],
+      "tracks": [
+        "天后 - 陈势安"
+      ],
+      "headings": [
+        {
+          "text": "我接触的第一个算法"
+        }
+      ]
+    },
+    {
+      "path": "2025/03/02/fun/index.html",
+      "title": "穷游庐山",
+      "date": "2025-03-02 21:19:07",
+      "hidden": false,
+      "text": "这是1月12日早上拍的日出，手都冻僵了 这些都是过程中拍的一些照片，感觉我还是不会拍照 这是谁家的小狗呀",
+      "code": [],
+      "formulas": [],
+      "imageUrls": [
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302092151263.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302092226918.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302092154663.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302092230718.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302092224158.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302092221937.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302094904533.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302094904531.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302094904530.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302094904529.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302094904525.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302094904526.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302094904532.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302094904528.jpg",
+        "https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250302094904527.jpg"
+      ],
+      "media": [
+        "https://video.tingshuoyiqing.top/d6314d3601dd96f7d6a73ed60e5e989f.mp4"
+      ],
+      "tracks": [],
+      "headings": []
+    },
+    {
+      "path": "2025/03/02/music-dev/index.html",
+      "title": "关于hexo博客fluid主题的音乐和视频配置",
+      "date": "2025-03-02 14:19:07",
+      "hidden": false,
+      "text": "如果有托管平台最好了，就可以省去很多麻烦。使用外链直接嵌入网页，让ai提供代码模版 音乐 音乐一般有两种方法： 将音乐文件放在你的博客的source文件夹下，然后在你的markdown文件中使用相对路径来嵌入到markdown文件中 外链嵌入 简单比较： 类型 优点 缺点 本地嵌入 完全控制/无第三方依赖 占用存储空间/需处理版权 外链嵌入 零存储压力/平台功能丰富 依赖第三方稳定性 本地MP3文件嵌入 用这个HTML代码嵌入你的markdown文件中,将音乐的链接替换成你的音乐路径. 效果展示： 外链嵌入 将以下代码嵌入你的markdown文件中,将音乐的链接替换成你的音乐链接. 不过这个代码有一点小瑕疵，就是一个页面最好只有一个音频，不然会起冲突。如果想要一个页面可以放多个，请把这段代码喂给deepseek修改。 ▶deeseek优化后的代码块 效果展示： 视频 将以下代码（适合cloudflare的R2储存桶）嵌入你的markdown文件中,记得将视频的链接和封面链接替换成你的视频链接和封面链接. 效果展示： 这是我在B站上下载的一个视频，所以有B站的水印。我把它储存在了cloudflare的R2储存桶上。 关于这些视频文件，你可以上传到你的服务器上，然后使用服务器提供的链接。也可以使用一些视频分享网站的链接 但是第三方平台的视频一般都是有一些限制的，比如水印和弹幕（哔哩哔哩）、无法正常访问（YouTube），等等。 所以还是找个稳定的托管平台吧。我现在用的是cloudflare的R2，感觉还不错，你也可以尝试一下。 下面将利用哔哩哔哩和YouTube来演示一下 哔哩哔哩嵌入方案 获取B站嵌入代码 打开视频页面 → 点击「分享」按钮 → 选择「嵌入代码」 复制类似以下代码： 将视频链接复制下来，替换代码中的默认视频链接。 建议使用这个deepseek优化过的代码： 效果展示： B站给的嵌入代码效果： deepseek优化的嵌入代码效果： YouTube嵌入方案 获取YouTube嵌入代码 打开视频 → 点击「分享」→ 选择「嵌入」→ 复制代码 示例代码： deepseek优化后的嵌入代码: 效果展示： YouTube给的嵌入代码效果： deepseek优化后的嵌入代码效果： 这些就是我今天的所有配置日志了。以后再记录关于如何获得cf的R2储存桶的笔记，因为我还没有学计算机网络，对于域名解析不太 了解。 我有一个域名无法被访问，我也还没有找到原因。不过应该是域名本身的原因，以ping就全红。等了解的更多了，就自己买一个云服务器玩。 就不用在网上到处找免费的平台配置了（不过在这个过程中我也学会了很多东西）",
+      "code": [
+        "<div class=\"custom-audio-player\">\n  <audio \n    controls \n    style=\"width: 100%; margin: 1rem 0;\"\n    data-cover=\"/music/cover.jpg\"\n  >\n    <source src=\"/music/xxx.mp3\" type=\"audio/mpeg\">\n  </audio>\n</div>\n<!-- 可选：自定义样式 -->\n<style>\n.custom-audio-player audio {\n  border-radius: 8px;\n  box-shadow: 0 2px 6px rgba(0,0,0,0.1);\n}\n</style>",
+        "<div class=\"custom-audio-player\">\n  <audio \n    controls \n    style=\"width: 100%; margin: 1rem 0;\"\n    data-cover=\"/music/cover.jpg\"\n  >\n    <source src=\"/music/xxx.mp3\" type=\"audio/mpeg\">\n  </audio>\n</div>\n<!-- 可选：自定义样式 -->\n<style>\n.custom-audio-player audio {\n  border-radius: 8px;\n  box-shadow: 0 2px 6px rgba(0,0,0,0.1);\n}\n</style>",
+        "{% raw %}\n<div class=\"custom-audio-player\">\n  <div class=\"audio-info\">\n    <button class=\"play-button\" id=\"playButton\" aria-label=\"播放音频\">\n      <svg class=\"play-icon\" viewBox=\"0 0 24 24\" fill=\"white\">\n        <path d=\"M8 5v14l11-7z\"/>\n      </svg>\n      <svg class=\"pause-icon\" viewBox=\"0 0 24 24\" fill=\"white\">\n        <path d=\"M6 19h4V5H6v14zm8-14v14h4V5h-4z\"/>\n      </svg>\n    </button>\n    <div class=\"audio-title\">你的音乐标题 - 歌手</div>      /* 放你的音乐标题 */\n  </div>\n\n  <div class=\"progress-container\" id=\"progressContainer\">\n    <div class=\"progress-bar\" id=\"progressBar\"></div>\n  </div>\n\n  <div class=\"time-display\">\n    <span id=\"currentTime\">0:00</span>\n    <span id=\"duration\">0:00</span>\n  </div>\n\n  <!-- 修正后的音频路径 -->\n  <audio id=\"audioElement\" style=\"display: none;\">\n    <source src=\"你的视频链接\" type=\"audio/mpeg\">      /* 放你的链接 */\n    你的浏览器不支持音频播放。\n  </audio>\n</div>\n\n<style>\n  /* 自定义播放器样式 */\n  .custom-audio-player {\n    width: 100%;\n    background-color: rgba(34, 46, 80, 0.8);\n    border-radius: 8px;\n    padding: 12px;\n    margin: 1.5rem 0;\n    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\n  }\n  .audio-info { display: flex; align-items: center; margin-bottom: 10px; }\n  .audio-title { \n    color: #ffffff;\n    font-size: 1rem;\n    font-weight: 600;\n    margin-left: 10px;\n    flex-grow: 1;\n  }\n  .play-button {\n    background-color: #0e83cd;\n    border: none;\n    border-radius: 50%;\n    width: 36px;\n    height: 36px;\n    cursor: pointer;\n    transition: background-color 0.3s;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n  }\n  .progress-container {\n    width: 100%;\n    height: 6px;\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 3px;\n    margin-bottom: 8px;\n  }\n  .progress-bar {\n    height: 100%;\n    background-color: #0e83cd;\n    border-radius: 3px;\n    width: 0%;\n    transition: width 0.1s linear;\n  }\n  .time-display {\n    display: flex;\n    justify-content: space-between;\n    color: rgba(255, 255, 255, 0.8);\n    font-size: 0.8rem;\n  }\n  .pause-icon { display: none; }\n</style>\n\n<script>\ndocument.addEventListener('DOMContentLoaded', function() {\n  const audioElement = document.getElementById('audioElement');\n  const playButton = document.getElementById('playButton');\n  const playIcon = document.querySelector('.play-icon');\n  const pauseIcon = document.querySelector('.pause-icon');\n  const progressBar = document.getElementById('progressBar');\n  const progressContainer = document.getElementById('progressContainer');\n  const currentTimeDisplay = document.getElementById('currentTime');\n  const durationDisplay = document.getElementById('duration');\n\n  // 初始化时间显示\n  audioElement.addEventListener('loadedmetadata', () => {\n    durationDisplay.textContent = formatTime(audioElement.duration);\n  });\n\n  // 进度条更新\n  audioElement.addEventListener('timeupdate', () => {\n    const percent = (audioElement.currentTime / audioElement.duration) * 100;\n    progressBar.style.width = `${percent}%`;\n    currentTimeDisplay.textContent = formatTime(audioElement.currentTime);\n  });\n\n  // 播放/暂停控制\n  playButton.addEventListener('click', () => {\n    audioElement.paused ? audioElement.play() : audioElement.pause();\n    playIcon.style.display = audioElement.paused ? 'block' : 'none';\n    pauseIcon.style.display = audioElement.paused ? 'none' : 'block';\n  });\n\n  // 点击进度条跳转\n  progressContainer.addEventListener('click', (e) => {\n    const rect = progressContainer.getBoundingClientRect();\n    const percent = (e.clientX - rect.left) / rect.width;\n    audioElement.currentTime = percent * audioElement.duration;\n  });\n\n  // 时间格式化函数\n  function formatTime(seconds) {\n    const mins = Math.floor(seconds / 60);\n    const secs = Math.floor(seconds % 60);\n    return `${mins}:${secs.toString().padStart(2, '0')}`;\n  }\n});\n</script>\n{% endraw %}",
+        "{% raw %}\n<div class=\"custom-audio-player\">\n  <div class=\"audio-info\">\n    <button class=\"play-button\" id=\"playButton\" aria-label=\"播放音频\">\n      <svg class=\"play-icon\" viewBox=\"0 0 24 24\" fill=\"white\">\n        <path d=\"M8 5v14l11-7z\"/>\n      </svg>\n      <svg class=\"pause-icon\" viewBox=\"0 0 24 24\" fill=\"white\">\n        <path d=\"M6 19h4V5H6v14zm8-14v14h4V5h-4z\"/>\n      </svg>\n    </button>\n    <div class=\"audio-title\">你的音乐标题 - 歌手</div>      /* 放你的音乐标题 */\n  </div>\n\n  <div class=\"progress-container\" id=\"progressContainer\">\n    <div class=\"progress-bar\" id=\"progressBar\"></div>\n  </div>\n\n  <div class=\"time-display\">\n    <span id=\"currentTime\">0:00</span>\n    <span id=\"duration\">0:00</span>\n  </div>\n\n  <!-- 修正后的音频路径 -->\n  <audio id=\"audioElement\" style=\"display: none;\">\n    <source src=\"你的视频链接\" type=\"audio/mpeg\">      /* 放你的链接 */\n    你的浏览器不支持音频播放。\n  </audio>\n</div>\n\n<style>\n  /* 自定义播放器样式 */\n  .custom-audio-player {\n    width: 100%;\n    background-color: rgba(34, 46, 80, 0.8);\n    border-radius: 8px;\n    padding: 12px;\n    margin: 1.5rem 0;\n    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\n  }\n  .audio-info { display: flex; align-items: center; margin-bottom: 10px; }\n  .audio-title { \n    color: #ffffff;\n    font-size: 1rem;\n    font-weight: 600;\n    margin-left: 10px;\n    flex-grow: 1;\n  }\n  .play-button {\n    background-color: #0e83cd;\n    border: none;\n    border-radius: 50%;\n    width: 36px;\n    height: 36px;\n    cursor: pointer;\n    transition: background-color 0.3s;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n  }\n  .progress-container {\n    width: 100%;\n    height: 6px;\n    background-color: rgba(255, 255, 255, 0.2);\n    border-radius: 3px;\n    margin-bottom: 8px;\n  }\n  .progress-bar {\n    height: 100%;\n    background-color: #0e83cd;\n    border-radius: 3px;\n    width: 0%;\n    transition: width 0.1s linear;\n  }\n  .time-display {\n    display: flex;\n    justify-content: space-between;\n    color: rgba(255, 255, 255, 0.8);\n    font-size: 0.8rem;\n  }\n  .pause-icon { display: none; }\n</style>\n\n<script>\ndocument.addEventListener('DOMContentLoaded', function() {\n  const audioElement = document.getElementById('audioElement');\n  const playButton = document.getElementById('playButton');\n  const playIcon = document.querySelector('.play-icon');\n  const pauseIcon = document.querySelector('.pause-icon');\n  const progressBar = document.getElementById('progressBar');\n  const progressContainer = document.getElementById('progressContainer');\n  const currentTimeDisplay = document.getElementById('currentTime');\n  const durationDisplay = document.getElementById('duration');\n\n  // 初始化时间显示\n  audioElement.addEventListener('loadedmetadata', () => {\n    durationDisplay.textContent = formatTime(audioElement.duration);\n  });\n\n  // 进度条更新\n  audioElement.addEventListener('timeupdate', () => {\n    const percent = (audioElement.currentTime / audioElement.duration) * 100;\n    progressBar.style.width = `${percent}%`;\n    currentTimeDisplay.textContent = formatTime(audioElement.currentTime);\n  });\n\n  // 播放/暂停控制\n  playButton.addEventListener('click', () => {\n    audioElement.paused ? audioElement.play() : audioElement.pause();\n    playIcon.style.display = audioElement.paused ? 'block' : 'none';\n    pauseIcon.style.display = audioElement.paused ? 'none' : 'block';\n  });\n\n  // 点击进度条跳转\n  progressContainer.addEventListener('click', (e) => {\n    const rect = progressContainer.getBoundingClientRect();\n    const percent = (e.clientX - rect.left) / rect.width;\n    audioElement.currentTime = percent * audioElement.duration;\n  });\n\n  // 时间格式化函数\n  function formatTime(seconds) {\n    const mins = Math.floor(seconds / 60);\n    const secs = Math.floor(seconds % 60);\n    return `${mins}:${secs.toString().padStart(2, '0')}`;\n  }\n});\n</script>\n{% endraw %}",
+        "<!-- 修改后的视频容器 -->\n<div class=\"custom-video-container\">\n  <div class=\"video-wrapper\">\n    <video \n      controls\n      preload=\"metadata\"\n      poster=\"https://xxx.jpg\"         /* 改成你的封面链接*/\n      style=\"object-fit: contain;\"  <!-- 关键属性 -->\n    >\n      <source src=\"https://xxx.mp4\" type=\"video/mp4\">    /* 改成你的视频链接*/\n    </video>\n  </div>\n</div>\n\n<style>\n/* 新增核心适配代码 */\n.custom-video-container {\n  max-width: 800px;\n  margin: 1.5rem auto;\n}\n\n.video-wrapper {\n  position: relative;\n  padding-top: 56.25%; /* 16:9比例计算 (9/16=56.25%) */\n  background: #000;\n  border-radius: 8px;\n  overflow: hidden;\n  box-shadow: 0 2px 8px rgba(0,0,0,0.1);\n}\n\n.video-wrapper video {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n</style>",
+        "<!-- 修改后的视频容器 -->\n<div class=\"custom-video-container\">\n  <div class=\"video-wrapper\">\n    <video \n      controls\n      preload=\"metadata\"\n      poster=\"https://xxx.jpg\"         /* 改成你的封面链接*/\n      style=\"object-fit: contain;\"  <!-- 关键属性 -->\n    >\n      <source src=\"https://xxx.mp4\" type=\"video/mp4\">    /* 改成你的视频链接*/\n    </video>\n  </div>\n</div>\n\n<style>\n/* 新增核心适配代码 */\n.custom-video-container {\n  max-width: 800px;\n  margin: 1.5rem auto;\n}\n\n.video-wrapper {\n  position: relative;\n  padding-top: 56.25%; /* 16:9比例计算 (9/16=56.25%) */\n  background: #000;\n  border-radius: 8px;\n  overflow: hidden;\n  box-shadow: 0 2px 8px rgba(0,0,0,0.1);\n}\n\n.video-wrapper video {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n</style>",
+        "<iframe src=\"//player.bilibili.com/player.html?aid=视频AID&cid=CID&page=1\" \n        scrolling=\"no\" \n        border=\"0\" \n        frameborder=\"no\" \n        framespacing=\"0\" \n        allowfullscreen=\"true\">\n</iframe>",
+        "<iframe src=\"//player.bilibili.com/player.html?aid=视频AID&cid=CID&page=1\" \n        scrolling=\"no\" \n        border=\"0\" \n        frameborder=\"no\" \n        framespacing=\"0\" \n        allowfullscreen=\"true\">\n</iframe>",
+        "<div class=\"bilibili-video-container\">\n  <iframe\n    src=\"//player.bilibili.com/player.html?aid=xxxxx&cid=xxxxx&page=1\"\n    scrolling=\"no\"\n    frameborder=\"no\"\n    allowfullscreen\n    loading=\"lazy\"                    <!-- 延迟加载优化 -->\n    data-src=\"https://player.bilibili.com/player.html?aid=xxxxx\" <!-- 备用 -->\n  ></iframe>\n</div>\n\n<style>\n/* B站专用适配 */\n.bilibili-video-container {\n  position: relative;\n  max-width: 800px;\n  margin: 1.5rem auto;\n  padding-top: 56.25%;  /* 16:9比例 */\n}\n\n.bilibili-video-container iframe {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  border-radius: 8px;\n  box-shadow: 0 4px 12px rgba(0,0,0,0.1);\n}\n</style>",
+        "<div class=\"bilibili-video-container\">\n  <iframe\n    src=\"//player.bilibili.com/player.html?aid=xxxxx&cid=xxxxx&page=1\"\n    scrolling=\"no\"\n    frameborder=\"no\"\n    allowfullscreen\n    loading=\"lazy\"                    <!-- 延迟加载优化 -->\n    data-src=\"https://player.bilibili.com/player.html?aid=xxxxx\" <!-- 备用 -->\n  ></iframe>\n</div>\n\n<style>\n/* B站专用适配 */\n.bilibili-video-container {\n  position: relative;\n  max-width: 800px;\n  margin: 1.5rem auto;\n  padding-top: 56.25%;  /* 16:9比例 */\n}\n\n.bilibili-video-container iframe {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  border-radius: 8px;\n  box-shadow: 0 4px 12px rgba(0,0,0,0.1);\n}\n</style>",
+        "<iframe width=\"560\" height=\"315\" \n        src=\"https://www.youtube.com/embed/视频ID\" \n        frameborder=\"0\" \n        allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" \n        allowfullscreen>\n</iframe>",
+        "<iframe width=\"560\" height=\"315\" \n        src=\"https://www.youtube.com/embed/视频ID\" \n        frameborder=\"0\" \n        allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" \n        allowfullscreen>\n</iframe>",
+        "<div class=\"youtube-video-container\">\n  <iframe\n    src=\"https://www.youtube.com/embed/视频ID\"\n    allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\"\n    allowfullscreen\n    loading=\"lazy\"\n    data-src=\"https://www.youtube-nocookie.com/embed/视频ID\" <!-- 隐私增强 -->\n  ></iframe>\n</div>\n\n<style>\n/* YouTube专用适配 */\n.youtube-video-container {\n  position: relative;\n  max-width: 800px;\n  margin: 1.5rem auto;\n  padding-top: 56.25%;  /* 16:9比例 */\n  background: #000;      /* 预加载黑底 */\n}\n\n.youtube-video-container iframe {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  border-radius: 8px;\n  box-shadow: 0 4px 12px rgba(0,0,0,0.1);\n}\n\n/* 暗黑模式适配 */\n@media (prefers-color-scheme: dark) {\n  .youtube-video-container {\n    background: #111;\n  }\n}\n</style>",
+        "<div class=\"youtube-video-container\">\n  <iframe\n    src=\"https://www.youtube.com/embed/视频ID\"\n    allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\"\n    allowfullscreen\n    loading=\"lazy\"\n    data-src=\"https://www.youtube-nocookie.com/embed/视频ID\" <!-- 隐私增强 -->\n  ></iframe>\n</div>\n\n<style>\n/* YouTube专用适配 */\n.youtube-video-container {\n  position: relative;\n  max-width: 800px;\n  margin: 1.5rem auto;\n  padding-top: 56.25%;  /* 16:9比例 */\n  background: #000;      /* 预加载黑底 */\n}\n\n.youtube-video-container iframe {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  border-radius: 8px;\n  box-shadow: 0 4px 12px rgba(0,0,0,0.1);\n}\n\n/* 暗黑模式适配 */\n@media (prefers-color-scheme: dark) {\n  .youtube-video-container {\n    background: #111;\n  }\n}\n</style>"
+      ],
+      "formulas": [],
+      "imageUrls": [],
+      "media": [
+        "/music/痴心绝对.mp3",
+        "https://pub-a3f1bd9f229949c4a1c424d879a5badf.r2.dev/%E5%A4%A9%E5%90%8E.mp3",
+        "https://video.tingshuoyiqing.top/28553773789-1-192.mp4",
+        "//player.bilibili.com/player.html?isOutside=true&aid=114058158153679&bvid=BV1VLPWeREVd&cid=28553773789&p=1",
+        "//player.bilibili.com/player.html?isOutside=true&aid=114058158153679&bvid=BV1VLPWeREVd&cid=28553773789&p=1",
+        "https://www.youtube.com/embed/kjG92Mb76s8?si=c0aUBx-iz7h4Mzuy",
+        "https://www.youtube.com/embed/kjG92Mb76s8?si=c0aUBx-iz7h4Mzuy"
+      ],
+      "tracks": [
+        "天后 - 陈势安"
+      ],
+      "headings": [
+        {
+          "id": "音乐",
+          "text": "音乐"
+        },
+        {
+          "id": "本地MP3文件嵌入",
+          "text": "本地MP3文件嵌入"
+        },
+        {
+          "id": "效果展示：",
+          "text": "效果展示："
+        },
+        {
+          "id": "外链嵌入",
+          "text": "外链嵌入"
+        },
+        {
+          "id": "效果展示：-2",
+          "text": "效果展示："
+        },
+        {
+          "id": "视频",
+          "text": "视频"
+        },
+        {
+          "id": "效果展示：-3",
+          "text": "效果展示："
+        },
+        {
+          "id": "哔哩哔哩嵌入方案",
+          "text": "哔哩哔哩嵌入方案"
+        },
+        {
+          "id": "效果展示：-4",
+          "text": "效果展示："
+        },
+        {
+          "id": "YouTube嵌入方案",
+          "text": "YouTube嵌入方案"
+        },
+        {
+          "id": "效果展示：-5",
+          "text": "效果展示："
+        }
+      ]
+    },
+    {
+      "path": "2026/01/18/AtCoder-ABC-441-E-题解/index.html",
+      "title": "AtCoder ABC 441-E 题解",
+      "date": "2026-01-18 00:21:00",
+      "hidden": false,
+      "text": "题目描述 给定一个由 A、B、C 三种字符组成、长度为 N 的字符串 S。求 S 的所有非空连续子串中，包含的 A 的数量多于 B 的数量的子串个数。 输入格式 输出格式 输出满足条件的子串个数。 约束条件 S 是由 A、B、C 组成的长度为 N 的字符串 解题思路 前缀和转换 对于 ，定义： ：S 前 i 个字符中 A 的数量 ：S 前 i 个字符中 B 的数量 考虑 S 的第 i 到第 j 个字符构成的子串（），该子串满足条件当且仅当： 等价于： 差分数组 定义差分数组 ，其中 。 那么问题转化为：求满足 且 的整数对 的数量。 这类似于求逆序对的问题，但这里求的是顺序对的数量。 前缀统计 维护一个数组 counter[d + N]，表示在当前位置之前，满足 的 的个数（由于 的范围是 ，我们需要偏移 N 使索引非负）。 同时维护 sum，表示所有小于当前 的 counter[d] 之和。 扫描过程 初始时 ，counter[N] = 1（表示 出现了一次）。 对于每个字符 c： 如果 c = A： 如果 c = B： 如果 c = C： 对于每个新的 ，将当前满足 的所有 j 都可以作为左端点，i 作为右端点，构成一个满足条件的子串。 具体步骤 遇到 A： 增加 1，sum 增加 counter[D]（因为新的更大的 可以与之前较小的 配对） 遇到 B： 减少 1，sum 减少 counter[D]（因为新的更小的 不能与之前较小的 配对） 更新 counter[D_i]，将当前 记录下来 代码实现 C++ 版本 Python 版本 复杂度分析 时间复杂度：，只需扫描一遍字符串 空间复杂度：，需要大小为 的计数数组 示例解释 示例 1 满足条件的子串（标号从 1 开始）： A：位置 1 AC：位置 1-2 CA：位置 5-6 CABCA：位置 5-9 A：位置 6 ABCA：位置 6-9 CA：位置 8-9 A：位置 9 示例 2 所有子串中 A 的数量都不少于 B 的数量。 总结 这道题的关键在于将问题转化为差分数组的顺序对计数问题。通过巧妙的前缀统计，我们可以在 时间内解决问题，而不需要使用 的暴力枚举。 参考：AtCoder ABC 441 E 官方题解",
+      "code": [
+        "N\nS",
+        "N\nS",
+        "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    unsigned N;\n    string S;\n    cin >> N >> S;\n\n    vector<unsigned> counter(2 * N + 1);  // counter[d + N] = D_j = d 的数量\n    unsigned D{N};  // D 的初始值偏移为 N\n    ++counter[D];   // D_0 = 0\n\n    unsigned long sum{};  // 小于当前 D 的 counter 之和\n    unsigned long ans{};\n\n    for (const auto c : S) {\n        if (c == 'A') {\n            sum += counter[D++];\n        } else if (c == 'B') {\n            sum -= counter[--D];\n        }\n        // C 不影响 D 值\n\n        ++counter[D];\n        ans += sum;\n    }\n\n    cout << ans << endl;\n    return 0;\n}",
+        "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    unsigned N;\n    string S;\n    cin >> N >> S;\n\n    vector<unsigned> counter(2 * N + 1);  // counter[d + N] = D_j = d 的数量\n    unsigned D{N};  // D 的初始值偏移为 N\n    ++counter[D];   // D_0 = 0\n\n    unsigned long sum{};  // 小于当前 D 的 counter 之和\n    unsigned long ans{};\n\n    for (const auto c : S) {\n        if (c == 'A') {\n            sum += counter[D++];\n        } else if (c == 'B') {\n            sum -= counter[--D];\n        }\n        // C 不影响 D 值\n\n        ++counter[D];\n        ans += sum;\n    }\n\n    cout << ans << endl;\n    return 0;\n}",
+        "def solve():\n    N = int(input())\n    S = input().strip()\n    \n    # D 的范围是 [-N, N]，偏移 N 后为 [0, 2N]\n    counter = [0] * (2 * N + 1)\n    D = N  # 初始 D_0 = 0，偏移后为 N\n    counter[D] = 1\n    \n    sum_less = 0\n    ans = 0\n    \n    for c in S:\n        if c == 'A':\n            sum_less += counter[D]\n            D += 1\n        elif c == 'B':\n            D -= 1\n            sum_less -= counter[D]\n        # C 不改变 D\n        \n        counter[D] += 1\n        ans += sum_less\n    \n    print(ans)\n\nif __name__ == \"__main__\":\n    solve()",
+        "def solve():\n    N = int(input())\n    S = input().strip()\n    \n    # D 的范围是 [-N, N]，偏移 N 后为 [0, 2N]\n    counter = [0] * (2 * N + 1)\n    D = N  # 初始 D_0 = 0，偏移后为 N\n    counter[D] = 1\n    \n    sum_less = 0\n    ans = 0\n    \n    for c in S:\n        if c == 'A':\n            sum_less += counter[D]\n            D += 1\n        elif c == 'B':\n            D -= 1\n            sum_less -= counter[D]\n        # C 不改变 D\n        \n        counter[D] += 1\n        ans += sum_less\n    \n    print(ans)\n\nif __name__ == \"__main__\":\n    solve()",
+        "输入：ACBBCABCAB\n输出：8",
+        "输入：ACBBCABCAB\n输出：8",
+        "输入：CCBC\n输出：0",
+        "输入：CCBC\n输出：0"
+      ],
+      "formulas": [
+        "1 \\leq N \\leq 5 \\times 10^5",
+        "i = 0, 1, 2, \\ldots, N",
+        "A_i",
+        "B_i",
+        "i \\leq j",
+        "A_j - A_{i-1} > B_j - B_{i-1}",
+        "(A_j - B_j) > (A_{i-1} - B_{i-1})",
+        "D = (D_0, D_1, \\ldots, D_N)",
+        "D_i = A_i - B_i",
+        "D_i < D_j",
+        "0 \\leq i < j \\leq N",
+        "(i, j)",
+        "D_j = d",
+        "j",
+        "d",
+        "[-N, N]",
+        "D_i",
+        "D_0 = 0",
+        "D_0 = 0",
+        "D_i = D_{i-1} + 1",
+        "D_i = D_{i-1} - 1",
+        "D_i = D_{i-1}",
+        "D_i",
+        "D_j < D_i",
+        "D_i",
+        "D_i",
+        "D_j",
+        "D_i",
+        "D_i",
+        "D_j",
+        "D_i",
+        "O(N)",
+        "O(N)",
+        "2N+1",
+        "O(N)",
+        "O(N^2)"
+      ],
+      "imageUrls": [],
+      "media": [],
+      "tracks": [],
+      "headings": [
+        {
+          "id": "题目描述",
+          "text": "题目描述"
+        },
+        {
+          "id": "输入格式",
+          "text": "输入格式"
+        },
+        {
+          "id": "输出格式",
+          "text": "输出格式"
+        },
+        {
+          "id": "约束条件",
+          "text": "约束条件"
+        },
+        {
+          "id": "解题思路",
+          "text": "解题思路"
+        },
+        {
+          "id": "前缀和转换",
+          "text": "前缀和转换"
+        },
+        {
+          "id": "差分数组",
+          "text": "差分数组"
+        },
+        {
+          "id": "前缀统计",
+          "text": "前缀统计"
+        },
+        {
+          "id": "扫描过程",
+          "text": "扫描过程"
+        },
+        {
+          "id": "具体步骤",
+          "text": "具体步骤"
+        },
+        {
+          "id": "代码实现",
+          "text": "代码实现"
+        },
+        {
+          "id": "C-版本",
+          "text": "C++ 版本"
+        },
+        {
+          "id": "Python-版本",
+          "text": "Python 版本"
+        },
+        {
+          "id": "复杂度分析",
+          "text": "复杂度分析"
+        },
+        {
+          "id": "示例解释",
+          "text": "示例解释"
+        },
+        {
+          "id": "示例-1",
+          "text": "示例 1"
+        },
+        {
+          "id": "示例-2",
+          "text": "示例 2"
+        },
+        {
+          "id": "总结",
+          "text": "总结"
+        }
+      ]
+    }
+  ]
+}

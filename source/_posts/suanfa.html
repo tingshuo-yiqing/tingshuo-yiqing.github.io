@@ -1,0 +1,115 @@
+---
+title: 我接触的第一个算法
+date: '2025-03-01 18:15:41'
+layout: post
+permalink: 2025/03/01/suanfa/
+disableNunjucks: true
+comments: true
+comment: true
+math: false
+recovered_from: 13fb75b4490e90a4cfb7bac3306d8bdfbd441fa2
+tags:
+  - 算法
+categories:
+  - 算法
+excerpt: 我的算法入门笔记
+---
+<div class="custom-audio-player">
+  <div class="audio-info">
+    <button class="play-button" id="playButton" aria-label="播放音频">
+      <svg class="play-icon" viewBox="0 0 24 24" fill="white">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" fill="white">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+      </svg>
+    </button>
+    <div class="audio-title">天后 - 陈势安</div>
+  </div>
+
+  <div class="progress-container" id="progressContainer">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div class="time-display">
+    <span id="currentTime">0:00</span>
+    <span id="duration">0:00</span>
+  </div>
+
+  <!-- 修正后的音频路径 -->
+  <audio id="audioElement" style="display: none;" preload="none">
+    <source src="https://pub-a3f1bd9f229949c4a1c424d879a5badf.r2.dev/%E5%A4%A9%E5%90%8E.mp3" type="audio/mpeg">
+    你的浏览器不支持音频播放。
+  </audio>
+</div>
+
+<style>
+  /* 自定义播放器样式 */
+  .custom-audio-player {
+    width: 100%;
+    background-color: rgba(34, 46, 80, 0.8);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .audio-info { display: flex; align-items: center; margin-bottom: 10px; }
+  .audio-title { 
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 10px;
+    flex-grow: 1;
+  }
+  .play-button {
+    background-color: #0e83cd;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .progress-container {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .progress-bar {
+    height: 100%;
+    background-color: #0e83cd;
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+  .time-display {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+  }
+  .pause-icon { display: none; }
+</style>
+
+
+
+<div class="note note-info">
+            <p>有人疼</p><p>才显得多么出众</p>
+          </div>
+<h1>我接触的第一个算法</h1>
+<p>在机房上第一节程序设计课的时候，我看老师的那个10个数求最大值的C语言程序挺有意思的，和我平时的那些过家家代码有点不同</p>
+<p>在下课的时候我也开始尝试了一下，我一开始没有完成。但是我问了deepseek，后来就写出来了。</p>
+<p>我一开始的代码是这样的：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tingshuo-yiqing/PicGo-tuchuang/img/20250301220744995.jpg" alt=""></p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {<br>    <span class="hljs-type">int</span> max, x, i;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;x);<br>    max = x;<br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">10</span>; i++) {<br><br>    }<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"max = %d"</span>, max);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
+<p>一开始我不知道for循环里面怎么写，我也没注意到max = x，我就问deepseek，然后我就理解了：</p>
+<p>首先初始化一个max(将第一个x赋max)然后再不断的将新输入的x与其比较。</p>
+<p>连续输入10个数，用for循环对每个数进行比较，让更大的x再赋值给max，这样<strong>不断更新max的值</strong>，确保max始终大于x的值。</p>
+<p>我就是没有这种思路所以写不出for循环里比较和更新的程序，于是我又重新写了一下：</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {<br>    <span class="hljs-type">int</span> max, x, i;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;x);<br>    max = x;<br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">10</span>; i++) {<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;x); <span class="hljs-comment">//循环输入用于比较</span><br>        <span class="hljs-keyword">if</span>(x &gt; max) {<br>            max = x;  <span class="hljs-comment">//如果x大于max，则将更大的x赋值给max</span><br>        }<br>    }<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"max = %d"</span>, max);  <span class="hljs-comment">// 输入完10个数后的max就是最大值了</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
+<p>然后我就知道了，原来算法里最基础的知识点<code>变量的初始化</code>和<code>变量的动态更新</code>。</p>
