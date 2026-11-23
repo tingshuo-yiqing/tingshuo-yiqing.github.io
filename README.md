@@ -2,6 +2,8 @@
 
 个人静态文章站。首页按年份列出文章，正文由 Node.js 生成 HTML，排版在 `source/reader/reader.css`。
 
+写作、验证、发布和回滚的完整流程见[维护与开发手册](docs/MAINTENANCE.md)。
+
 ## 本地运行
 
 需要 Node.js 22.14 或更新版本。
